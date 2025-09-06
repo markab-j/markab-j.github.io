@@ -4,16 +4,10 @@
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
 
-  type Project = {
-    title: string;
-    description: string;
-    imageUrl: string;
-    tags: string[];
-    url: string;
-    year: number;
-  };
+  import ProjectCard from "$lib/components/projects/project-card.svelte";
+  import type { ProjectData } from "$lib/types/project";
 
-  let projects: Project[] = [
+  let projects: ProjectData[] = [
     {
       title: "Pixelizer Web",
       description: "Pixelate Image Website Using Pixelizer Library",
@@ -54,39 +48,6 @@
   });
 </script>
 
-{#snippet ProjectCard(project: Project)}
-  <a
-    href="https://{project.url}"
-    target="_blank"
-    rel="noopener noreferrer external"
-    class="project-card group border-border bg-card/50 block overflow-hidden rounded-xl border hover:shadow-lg"
-  >
-    <div class="aspect-square px-4 pt-4">
-      <img
-        src={project.imageUrl}
-        alt={project.title}
-        class="h-full w-full object-contain"
-      />
-    </div>
-
-    <div class="border-t-accent border-t p-4">
-      <h2 class="text-foreground group-hover:text-primary text-xl font-semibold">
-        {project.title}
-      </h2>
-      <p class="text-muted-foreground text-sm">{project.description}</p>
-      <div class="mt-4 flex flex-wrap gap-2">
-        {#each project.tags as tag (tag)}
-          <span
-            class="bg-primary/10 text-primary inline-flex items-center rounded-md px-2 py-1 text-xs font-medium"
-          >
-            {tag}
-          </span>
-        {/each}
-      </div>
-    </div>
-  </a>
-{/snippet}
-
 <div class="mt-header mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
   <h1
     class="text-foreground border-accent border-b-2 pb-2 text-4xl font-extrabold tracking-tight sm:text-5xl"
@@ -95,7 +56,7 @@
   </h1>
   <div class="mt-4 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
     {#each projects as project, i (i)}
-      {@render ProjectCard(project)}
+      <ProjectCard {project} />
     {/each}
   </div>
 </div>
