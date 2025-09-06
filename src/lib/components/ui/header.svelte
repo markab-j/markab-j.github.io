@@ -2,9 +2,8 @@
 	import logo from '$lib/assets/favicon.svg';
 	import { resolve } from '$app/paths';
 
-	import Sun from '@lucide/svelte/icons/sun';
-	import Moon from '@lucide/svelte/icons/moon';
 	import Github from '@lucide/svelte/icons/github';
+	import ThemeToggle from '$lib/components/common/theme-toggle.svelte';
 
 	const navItems = [
 		{
@@ -48,14 +47,7 @@
 			</ul>
 
 			<div class="flex items-center space-x-4 pl-6">
-				<button
-					type="button"
-					aria-label="테마 전환"
-					class="hover:text-foreground/50 transition-colors duration-200"
-				>
-					<Sun class="size-5 block dark:hidden" />
-					<Moon class="size-5 hidden dark:block" />
-				</button>
+				<ThemeToggle />
 				<a
 					href="https://github.com"
 					target="_blank"
