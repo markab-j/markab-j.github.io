@@ -1,5 +1,5 @@
 <script lang="ts">
-  import logo from "$lib/assets/favicon.svg";
+  import logo from "$lib/assets/icon.svg";
   import { resolve } from "$app/paths";
 
   import Github from "@lucide/svelte/icons/github";
