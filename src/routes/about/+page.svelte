@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Github, GraduationCap, Trophy, Mail } from '@lucide/svelte';
+	import { Github, GraduationCap, Mail } from '@lucide/svelte';
 
 	const userInfo = {
 		nickname: 'markab-j',
@@ -19,12 +19,6 @@
 			date: '2020 - 2025 (Expected)',
 			title: 'Hanbat National University',
 			description: 'Dept. of Information and Communication Engineering'
-		},
-		{
-			icon: Trophy,
-			date: '2024',
-			title: 'Excellence Award',
-			description: 'Chungcheong Area Collegiate Cyber Threat Scenario Contest'
 		}
 	];
 </script>
