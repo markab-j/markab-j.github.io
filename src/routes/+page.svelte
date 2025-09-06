@@ -6,23 +6,24 @@
 
 	function wordsAnimation() {
 		gsap.set('.words', {
-			yPercent: -66.66,
+			yPercent: -66.66
 		});
 
-		gsap.timeline({
-			repeat: -1,
-		})
+		gsap
+			.timeline({
+				repeat: -1
+			})
 			.to('.words', {
 				yPercent: -33.33,
 				duration: 0.7,
 				ease: 'power3.inOut',
-				delay: 1.5,
+				delay: 1.5
 			})
 			.to('.words', {
 				yPercent: 0,
 				duration: 0.7,
 				ease: 'power3.inOut',
-				delay: 1.5,
+				delay: 1.5
 			});
 	}
 
@@ -41,8 +42,8 @@
 					scrollTrigger: {
 						trigger: elem,
 						start: 'top 80%',
-						toggleActions: 'play none none reverse',
-					},
+						toggleActions: 'play none none reverse'
+					}
 				});
 			});
 		}
@@ -74,11 +75,13 @@
 			<div class="h-[25vh]"></div>
 			<h2 class="scroll-reveal text-4xl font-bold">즐기는 사람</h2>
 			<p class="scroll-reveal text-lg leading-relaxed">
-				저는 스스로를 ‘개발자’라고 정의하지 않습니다. 그저 무언가를 만들고, 실험하고, 문제를 해결하는 과정을 즐기는 사람일 뿐입니다.
+				저는 스스로를 ‘개발자’라고 정의하지 않습니다. 그저 무언가를 만들고, 실험하고, 문제를
+				해결하는 과정을 즐기는 사람일 뿐입니다.
 			</p>
 
 			<p class="scroll-reveal text-lg leading-relaxed">
-				여기에는 완벽하게 정리된 지식보다, 직접 부딪히며 얻은 경험과 고민이 그대로 남아 있습니다. 때로는 서툴고 불완전할지라도, 그런 과정 하나하나가 저를 조금씩 앞으로 나아가게 합니다.
+				여기에는 완벽하게 정리된 지식보다, 직접 부딪히며 얻은 경험과 고민이 그대로 남아 있습니다.
+				때로는 서툴고 불완전할지라도, 그런 과정 하나하나가 저를 조금씩 앞으로 나아가게 합니다.
 			</p>
 
 			<p class="scroll-reveal text-lg leading-relaxed">
