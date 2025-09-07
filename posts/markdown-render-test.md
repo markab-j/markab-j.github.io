@@ -269,18 +269,17 @@ easy to include example HTML source code using Markdown -- just paste
 it and indent it, and Markdown will handle the hassle of encoding the
 ampersands and angle brackets. For example, this:
 
-    <div class="footer">
-        &copy; 2004 Foo Corporation
-    </div>
 
 Regular Markdown syntax is not processed within code blocks. E.g.,
 asterisks are just literal asterisks within a code block. This means
 it's also easy to use Markdown to write about Markdown's own syntax.
 
-```
-tell application "Foo"
-    beep
-end tell
+```ts showLineNumbers title="타이틀 테스트"
+const a: number = 3;
+const b: string = 'hello';
+const c: string = 'world';
+
+console.log(b + c);
 ```
 
 ## Span Elements

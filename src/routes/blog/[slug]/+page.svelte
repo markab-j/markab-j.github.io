@@ -76,7 +76,7 @@
       </div>
     </section>
   </header>
-  <section class="prose dark:prose-invert mx-auto max-w-none">
+  <section class="prose dark:prose-invert max-w-none">
     <PostContent />
   </section>
   <footer class="border-t-border border-t pt-4">

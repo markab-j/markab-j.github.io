@@ -18,6 +18,13 @@ http://scripts.sil.org/OFL
   src: url("/fonts/PretendardJPVariable.woff2") format("woff2-variations");
 }
 
+@font-face {
+  font-family: 'D2Coding';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -149,5 +156,39 @@ http://scripts.sil.org/OFL
       "Segoe UI Emoji",
       "Segoe UI Symbol",
       sans-serif;
+  }
+
+  pre[data-code-title]:before {
+    font-weight: 500;
+    min-height: calc(1.5rem + 1px);
+    content: attr(data-code-title);
+    display: block;
+    padding-bottom: 4px;
+    border-bottom: solid 1px rgb(63 63 70);
+  }
+
+  code {
+    font-family: 'D2Coding', Consolas, 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    tab-size: 2;
+    font-variant-ligatures: common-ligatures;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code[data-line-numbers] > span[data-line-number]::before {
+    content: attr(data-line-number);
+    display: inline-block;
+    width: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    text-align: right;
+    color: gray;
+  }
+
+  code > span[data-highlighted] {
+    background: #3b4252;
+    width: 100%;
   }
 }
