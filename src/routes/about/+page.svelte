@@ -28,16 +28,16 @@
 </script>
 
 <div class="mt-header"></div>
-<section class="border-border bg-card/50 border-b mx-auto max-w-5xl px-4 py-10 sm:px-6 ">
-  <UserProfile userInfo={userInfo} />
+<section class="border-border bg-card/50 mx-auto max-w-5xl border-b px-4 py-10 sm:px-6">
+  <UserProfile {userInfo} />
 </section>
 
 <section
   class="mx-auto grid max-w-5xl grid-cols-1 gap-16 px-4 py-10 sm:px-6 lg:grid-cols-3 lg:px-8"
 >
   <div class="lg:col-span-1">
-    <TimelineSection timeline={timeline} />
+    <TimelineSection {timeline} />
   </div>
 
-  <SkillSection skillInfo={skillInfo} />
+  <SkillSection {skillInfo} />
 </section>
