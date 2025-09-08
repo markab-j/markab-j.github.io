@@ -138,6 +138,10 @@ http://scripts.sil.org/OFL
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
     @apply bg-background text-foreground min-h-screen;
     font-family:
@@ -156,6 +160,10 @@ http://scripts.sil.org/OFL
       "Segoe UI Emoji",
       "Segoe UI Symbol",
       sans-serif;
+  }
+
+  [id] {
+    scroll-margin-top: var(--spacing-header);
   }
 
   pre[data-code-title]:before {
@@ -190,5 +198,44 @@ http://scripts.sil.org/OFL
   code > span[data-highlighted] {
     background: #3b4252;
     width: 100%;
+  }
+}
+
+@layer utilities {
+  .prose {
+    .toc {
+      @apply hidden top-24 right-8 w-72 bg-transparent rounded px-4 md:block md:fixed;
+    }
+
+    .toc-level {
+      @apply list-none p-0 m-0;
+    }
+
+    .toc-level-2 {
+      @apply pl-4 mt-0.5;
+    }
+
+    .toc-level-3 {
+      @apply pl-4 mt-0.5;
+    }
+
+    .toc-item {
+    }
+
+    .toc-item-h1 {
+      @apply border-l-2 border-l-border;
+    }
+
+    .toc-item-h2 {
+      @apply py-0;
+    }
+
+    .toc-item-h3 {
+      @apply py-0;
+    }
+
+    .toc-link {
+      @apply block no-underline text-foreground/50 hover:text-primary;
+    }
   }
 }

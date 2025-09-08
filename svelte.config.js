@@ -1,6 +1,7 @@
 import { mdsvex } from "mdsvex";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
+import rehypeToc from "@jsdevtools/rehype-toc";
 import adapter from "@sveltejs/adapter-static";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { createHighlighter } from "@bitmachina/highlighter";
@@ -13,7 +14,7 @@ const config = {
     vitePreprocess(),
     mdsvex({
       extensions: [".md"],
-      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeToc],
       highlight: {
         highlighter: await createHighlighter({ theme: "vitesse-dark" }),
       },
