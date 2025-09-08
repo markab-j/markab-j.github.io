@@ -168,22 +168,21 @@ http://scripts.sil.org/OFL
   }
 
   pre[data-code-title]:before {
-    font-weight: 500;
-    min-height: calc(1.5rem + 1px);
+    @apply min-h-6 pb-1 border-b border-b-gray-700 dark:border-b-muted block text-xs;
     content: attr(data-code-title);
-    display: block;
-    padding-bottom: 4px;
-    border-bottom: solid 1px rgb(63 63 70);
   }
 
-  code {
+  pre > code {
+    @apply flex flex-col;
     font-family: "D2Coding", Consolas, "Courier New", monospace;
-    font-size: 0.9rem;
-    line-height: 1.6;
     tab-size: 2;
     font-variant-ligatures: common-ligatures;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  code > span {
+    @apply px-4
   }
 
   code[data-line-numbers] > span[data-line-number]::before {
@@ -204,12 +203,30 @@ http://scripts.sil.org/OFL
 
 @layer utilities {
   .prose {
+    pre {
+      @apply border;
+    }
+
+    :not(pre) > code {
+      @apply bg-accent text-red-600 px-1.5 p-1 rounded-sm text-sm font-medium text-shadow-2xs;
+      font-family: "D2Coding", Consolas, "Courier New", monospace;
+    }
+
+    :not(pre) > code::before,
+    :not(pre) > code::after {
+      @apply content-none;
+    }
+
     .toc {
       @apply top-24 right-8 hidden w-72 rounded bg-transparent px-4 text-sm md:fixed md:block;
     }
 
     .toc-level {
       @apply m-0 list-none p-0;
+    }
+
+    .toc-level-1 {
+      @apply border-l-border border-l-2;
     }
 
     .toc-level-2 {
@@ -224,7 +241,6 @@ http://scripts.sil.org/OFL
     }
 
     .toc-item-h1 {
-      @apply border-l-border border-l-2;
     }
 
     .toc-item-h2 {

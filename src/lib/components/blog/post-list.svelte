@@ -65,13 +65,15 @@
           </div>
 
           <div class="aspect-video max-w-48 flex-shrink-0 overflow-hidden">
-            <img
-              src={post.coverImage}
-              width={post.coverWidth}
-              height={post.coverHeight}
-              alt={post.title}
-              class="h-full w-full object-cover"
-            />
+            {#if post.coverImage}
+              <img
+                src={post.coverImage}
+                width={post.coverWidth}
+                height={post.coverHeight}
+                alt={post.title}
+                class="h-full w-full object-cover"
+              />
+            {/if}
           </div>
         </article>
       </a>

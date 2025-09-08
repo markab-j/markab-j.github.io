@@ -59,7 +59,7 @@
         width={coverWidth}
         height={coverHeight}
         class="mb-8 size-full object-cover"
-        style:aspect-ratio={coverWidth / coverHeight}
+        style:aspect-ratio={coverWidth && coverHeight && coverWidth / coverHeight}
       />
     {/if}
     <section class="mb-4 flex flex-wrap justify-center gap-2">
@@ -81,7 +81,7 @@
     <TocHighlighter />
     <PostContent />
   </section>
-  <footer class="border-t-border border-t py-4">
+  <footer class="border-t-border border-t py-4 mt-24">
     <section class="flex flex-wrap gap-2">
       {#each tags as tag, i (i)}
         <PostTagBadge {tag} />
