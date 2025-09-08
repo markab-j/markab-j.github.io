@@ -204,7 +204,7 @@ http://scripts.sil.org/OFL
 @layer utilities {
   .prose {
     .toc {
-      @apply hidden top-24 right-8 w-72 bg-transparent rounded px-4 md:block md:fixed;
+      @apply hidden top-24 right-8 w-72 bg-transparent rounded px-4 md:block md:fixed text-sm;
     }
 
     .toc-level {
@@ -235,7 +235,11 @@ http://scripts.sil.org/OFL
     }
 
     .toc-link {
-      @apply block no-underline text-foreground/50 hover:text-primary;
+      @apply px-2 block no-underline text-foreground/50 hover:text-primary;
+    }
+
+    .toc .toc-link.highlight {
+      @apply text-primary bg-muted
     }
   }
 }

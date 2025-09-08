@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { PageProps } from "./$types";
+  import TocHighlighter from "$lib/components/blog/[slug]/toc-highlighter.svelte";
   import { Calendar } from "@lucide/svelte";
   import PostTagBadge from "$lib/components/blog/[slug]/post-tag-badge.svelte";
   import PostCategoryBadge from "$lib/components/blog/[slug]/post-category-badge.svelte";
@@ -49,7 +50,7 @@
   />
 </svelte:head>
 
-<article class="mt-header mx-auto w-full max-w-3xl px-4 pb-16">
+<article class="mt-header mx-auto w-full max-w-3xl px-4 pb-36">
   <header class="mb-8 text-center md:mb-12">
     {#if coverImage}
       <img
@@ -77,9 +78,10 @@
     </section>
   </header>
   <section class="prose dark:prose-invert max-w-none">
+    <TocHighlighter />
     <PostContent />
   </section>
-  <footer class="border-t-border border-t pt-4">
+  <footer class="border-t-border border-t py-4">
     <section class="flex flex-wrap gap-2">
       {#each tags as tag, i (i)}
         <PostTagBadge {tag} />
