@@ -14,7 +14,7 @@
 
       // 클라이언트 사이트 SearchParams 업데이트이므로 resolve 함수를 호출할 이유가 없습니다.
       // eslint-disable-next-line svelte/no-navigation-without-resolve
-      goto(filterSearchParams(), { replaceState: true, keepFocus: true });
+      goto(filterSearchParams(), { replaceState: true, keepFocus: true, noScroll: true });
     }
   }
 </script>

@@ -5,6 +5,7 @@ import { PostMetadataSchema } from "$lib/schema/post-metadata.schema";
 export const load: PageLoad = async ({ params }: PageLoadEvent) => {
   try {
     const post = await import(`../../../../posts/${params.slug}.md`);
+
     const postMetadata = PostMetadataSchema.parse(post.metadata);
 
     return {

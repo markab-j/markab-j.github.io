@@ -2,6 +2,7 @@ import type { PageLoad } from "./$types";
 import { PostMetadataSchema } from "$lib/schema/post-metadata.schema";
 import dayjs from "dayjs";
 import type { Tag } from "$lib/types/blog";
+import { getSlug } from "$lib/utils/file";
 
 interface MarkdownData {
   metadata: unknown;
@@ -15,7 +16,7 @@ export const load: PageLoad = async () => {
 
       const metadata = PostMetadataSchema.parse(mdData.metadata);
 
-      const slug = path.split("/").pop()?.slice(0, -3);
+      const slug = getSlug(path);
       return {
         ...metadata,
         slug,
@@ -31,7 +32,8 @@ export const load: PageLoad = async () => {
       allCategories.add(category);
     });
     post.tags.forEach((tag) => {
-      allTagsCountMap.set(tag, allTagsCountMap.get(tag) || 1);
+      const count = allTagsCountMap.get(tag) || 0;
+      allTagsCountMap.set(tag, count + 1);
     });
   }
 
