@@ -1,6 +1,6 @@
 <script lang="ts">
   import X from "@lucide/svelte/icons/x";
-  import { filter, filterSearchParams, toggleCategory } from '$lib/states/filter.svelte';
+  import { filter, filterSearchParams, toggleCategory } from "$lib/states/filter.svelte";
   import { cn } from "$lib/utils/css";
   import { goto } from "$app/navigation";
   import { browser } from "$app/environment";

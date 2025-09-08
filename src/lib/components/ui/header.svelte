@@ -2,7 +2,6 @@
   import logo from "$lib/assets/icon.svg";
   import { resolve } from "$app/paths";
 
-  import Github from "@lucide/svelte/icons/github";
   import ThemeToggle from "$lib/components/common/theme-toggle.svelte";
 
   const navItems = [

@@ -4,7 +4,7 @@
   import PostList from "$lib/components/blog/post-list.svelte";
   import CategoryBadge from "$lib/components/blog/category-badge.svelte";
   import TagBadge from "$lib/components/blog/tag-badge.svelte";
-  import { setFilter } from '$lib/states/filter.svelte';
+  import { setFilter } from "$lib/states/filter.svelte";
   import { SvelteURLSearchParams } from "svelte/reactivity";
   import { getFilterOptionFormSearchParams } from "$lib/utils/filter";
   import { browser } from "$app/environment";
@@ -47,7 +47,7 @@
         <h3 class="text-foreground text-xl font-semibold">Tags</h3>
         <div class="mt-4 flex flex-col gap-2">
           {#each allTags as tag (tag)}
-            <TagBadge {tag}/>
+            <TagBadge {tag} />
           {/each}
         </div>
       </div>

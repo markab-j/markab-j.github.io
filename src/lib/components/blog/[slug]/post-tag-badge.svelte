@@ -1,5 +1,4 @@
 <script lang="ts">
-
   interface PostTagBadgeProps {
     tag: string;
   }

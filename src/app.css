@@ -19,8 +19,9 @@ http://scripts.sil.org/OFL
 }
 
 @font-face {
-  font-family: 'D2Coding';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+  font-family: "D2Coding";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff")
+    format("woff");
   font-weight: normal;
   font-display: swap;
 }
@@ -176,7 +177,7 @@ http://scripts.sil.org/OFL
   }
 
   code {
-    font-family: 'D2Coding', Consolas, 'Courier New', monospace;
+    font-family: "D2Coding", Consolas, "Courier New", monospace;
     font-size: 0.9rem;
     line-height: 1.6;
     tab-size: 2;
@@ -204,26 +205,26 @@ http://scripts.sil.org/OFL
 @layer utilities {
   .prose {
     .toc {
-      @apply hidden top-24 right-8 w-72 bg-transparent rounded px-4 md:block md:fixed text-sm;
+      @apply top-24 right-8 hidden w-72 rounded bg-transparent px-4 text-sm md:fixed md:block;
     }
 
     .toc-level {
-      @apply list-none p-0 m-0;
+      @apply m-0 list-none p-0;
     }
 
     .toc-level-2 {
-      @apply pl-4 mt-0.5;
+      @apply mt-0.5 pl-4;
     }
 
     .toc-level-3 {
-      @apply pl-4 mt-0.5;
+      @apply mt-0.5 pl-4;
     }
 
     .toc-item {
     }
 
     .toc-item-h1 {
-      @apply border-l-2 border-l-border;
+      @apply border-l-border border-l-2;
     }
 
     .toc-item-h2 {
@@ -235,11 +236,11 @@ http://scripts.sil.org/OFL
     }
 
     .toc-link {
-      @apply px-2 block no-underline text-foreground/50 hover:text-primary;
+      @apply text-foreground/50 hover:text-primary block px-2 no-underline;
     }
 
     .toc .toc-link.highlight {
-      @apply text-primary bg-muted
+      @apply text-primary bg-muted;
     }
   }
 }
