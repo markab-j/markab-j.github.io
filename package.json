@@ -12,7 +12,7 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
-    "deploy": "bun deploy.ts"
+    "deploy": "vite build && bun deploy.ts"
   },
   "devDependencies": {
     "@bitmachina/highlighter": "^1.0.0-alpha.7",
