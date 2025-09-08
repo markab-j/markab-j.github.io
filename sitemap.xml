@@ -14,9 +14,6 @@
     <loc>https://markab-j.github.io/projects</loc>
   </url>
   <url>
-    <loc>https://markab-j.github.io/blog/markdown-code-test</loc>
-  </url>
-  <url>
-    <loc>https://markab-j.github.io/blog/test</loc>
+    <loc>https://markab-j.github.io/blog/creating-a-dev-blog-with-sveltekit-part-1</loc>
   </url>
 </urlset>

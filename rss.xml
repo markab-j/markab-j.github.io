@@ -4,7 +4,7 @@
         <title>markab-j's Blog</title>
         <link>https://markab-j.github.io</link>
         <description>Development Blog</description>
-        <lastBuildDate>Mon, 08 Sep 2025 09:34:21 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 08 Sep 2025 14:52:05 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
@@ -12,21 +12,12 @@
         <copyright>Copyright 2025, Markab-j</copyright>
         <atom:link href="https://markab-j.github.io/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[마크다운 코드 테스트 페이지입니다.]]></title>
-            <link>https://markab-j.github.io/markdown-code-test</link>
-            <guid isPermaLink="true">https://markab-j.github.io/markdown-code-test</guid>
-            <pubDate>Sun, 07 Sep 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[마크다운 코드 렌더링 테스트 페이지입니다.]]></description>
-            <content:encoded><![CDATA[<p>마크다운 코드 렌더링 테스트 페이지입니다.</p> <div style="margin-top: 50px; font-style: italic;"> <strong><a href="https://markab-j.github.io/markdown-code-test">Keep reading</a>.</strong> </div> <br /> <br />]]></content:encoded>
-            <author>markab.j.nn@gmail.com (markab-j, Jeong Yehwan)</author>
-        </item>
-        <item>
-            <title><![CDATA[마크다운 코드 테스트 페이지입니다.]]></title>
-            <link>https://markab-j.github.io/test</link>
-            <guid isPermaLink="true">https://markab-j.github.io/test</guid>
-            <pubDate>Sun, 07 Sep 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[마크다운 코드 렌더링 테스트 페이지입니다.]]></description>
-            <content:encoded><![CDATA[<p>마크다운 코드 렌더링 테스트 페이지입니다.</p> <div style="margin-top: 50px; font-style: italic;"> <strong><a href="https://markab-j.github.io/test">Keep reading</a>.</strong> </div> <br /> <br />]]></content:encoded>
+            <title><![CDATA[SvelteKit으로 정적 블로그 만들기]]></title>
+            <link>https://markab-j.github.io/creating-a-dev-blog-with-sveltekit-part-1</link>
+            <guid isPermaLink="true">https://markab-j.github.io/creating-a-dev-blog-with-sveltekit-part-1</guid>
+            <pubDate>Mon, 08 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Svelte 5을 사용하여 개발 블로그를 만드는 과정을 기록한다.]]></description>
+            <content:encoded><![CDATA[<p>Svelte 5을 사용하여 개발 블로그를 만드는 과정을 기록한다.</p> <div style="margin-top: 50px; font-style: italic;"> <strong><a href="https://markab-j.github.io/creating-a-dev-blog-with-sveltekit-part-1">Keep reading</a>.</strong> </div> <br /> <br />]]></content:encoded>
             <author>markab.j.nn@gmail.com (markab-j, Jeong Yehwan)</author>
         </item>
     </channel>
