@@ -1,4 +1,7 @@
 import ghPages from "gh-pages";
+import { createSitemap } from "svelte-sitemap/src";
+
+await createSitemap("https://markab-j.github.io", { debug: true });
 
 await ghPages.publish(
   "build",

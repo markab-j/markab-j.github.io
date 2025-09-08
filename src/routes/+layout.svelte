@@ -1,7 +1,6 @@
 <script lang="ts">
   import "../app.css";
   import { ModeWatcher } from "mode-watcher";
-  import favicon from "$lib/assets/favicon.svg";
   import Header from "$lib/components/ui/header.svelte";
   import Footer from "$lib/components/ui/footer.svelte";
 
@@ -11,7 +10,7 @@
 <svelte:head>
   <link
     rel="icon"
-    href={favicon}
+    href="/favicon.svg"
   />
 </svelte:head>
 

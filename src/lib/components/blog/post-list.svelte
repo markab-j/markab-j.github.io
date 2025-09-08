@@ -41,7 +41,7 @@
         href={resolve(`/blog/${post.slug}`)}
       >
         <article
-          class="hover:bg-muted flex items-center justify-between p-4 gap-x-6 transition-colors"
+          class="hover:bg-muted flex items-center justify-between gap-x-6 p-4 transition-colors"
         >
           <div class="flex-grow">
             <div class="group relative">

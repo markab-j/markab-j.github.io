@@ -1,7 +1,7 @@
 import type { PageLoad } from "./$types";
 import { PostMetadataSchema } from "$lib/schema/post-metadata.schema";
 import dayjs from "dayjs";
-import type { Tag } from "$lib/types/blog";
+import type { Post, Tag } from "$lib/types/blog";
 import { getSlug } from "$lib/utils/file";
 
 interface MarkdownData {
@@ -10,7 +10,7 @@ interface MarkdownData {
 }
 
 export const load: PageLoad = async () => {
-  const allPosts = await Promise.all(
+  const allPosts: Post[] = await Promise.all(
     Object.entries(import.meta.glob("/posts/*.md")).map(async ([path, resolver]) => {
       const mdData = (await resolver()) as MarkdownData;
 
