@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import PostItemSkeleton from '$lib/components/blog/post-item-skeleton.svelte';
 	import { formatDate } from '$lib/utils/date';
 	import { filter, isFilterEmpty } from '$lib/states/filter.svelte';
 	import type { Post } from '$lib/types/blog';
@@ -11,48 +10,28 @@
 
 	const { posts }: PostListProps = $props();
 
-	let isLoading = $state(false);
-	let filteredPosts: Post[] = $state(posts);
-	let timer: number;
-
-	$effect(() => {
-		console.info($state.snapshot(filter));
-		const { categories, tags } = filter;
-
-		clearTimeout(timer);
-
+	const filteredPosts = $derived.by<Post[]>(() => {
 		if (isFilterEmpty()) {
-			filteredPosts = posts;
-			return;
+			return posts;
 		}
 
-		isLoading = true;
+		return posts.filter((post) => {
+			const postCategories = post.categories;
+			const categoryMatch = filter.categories.every((cat) => postCategories.includes(cat));
 
-		timer = setTimeout(() => {
-			filteredPosts = posts.filter((post) => {
-				for (const category of categories) {
-					if (!post.categories.includes(category)) {
-						return false;
-					}
-				}
-				for (const tag of tags) {
-					if (!post.tags.includes(tag)) {
-						return false;
-					}
-				}
-				return true;
-			});
-			isLoading = false;
-		}, 200);
+			if (!categoryMatch) return false;
+
+			const postTags = post.tags;
+			const tagMatch = filter.tags.every((tag) => postTags.includes(tag));
+
+			return tagMatch;
+		});
 	});
+
 </script>
 
 <section class="flex flex-col min-h-screen gap-4">
-	{#if isLoading}
-			{#each Array(5) as _, i (i)}
-				<PostItemSkeleton />
-			{/each}
-	{:else if filteredPosts.length === 0}
+	{#if filteredPosts.length === 0}
 		<div class="flex h-40 items-center justify-center text-center">
 			<p class="text-muted-foreground">표시할 포스트가 없습니다.</p>
 		</div>

@@ -4,28 +4,22 @@
   import PostList from "$lib/components/blog/post-list.svelte";
   import CategoryBadge from "$lib/components/blog/category-badge.svelte";
   import TagBadge from "$lib/components/blog/tag-badge.svelte";
-  import { setFilter } from "$lib/states/filter.svelte";
+  import { setFilter } from '$lib/states/filter.svelte';
   import { SvelteURLSearchParams } from "svelte/reactivity";
   import { getFilterOptionFormSearchParams } from "$lib/utils/filter";
   import { browser } from "$app/environment";
-  import { setPage } from '$lib/states/page.svelte';
-  import { URLSearchParamsToPage } from '$lib/utils/page';
 
   const { data }: PageProps = $props();
 
   const { posts, allTags, allCategories } = data;
 
-  let searchParams: SvelteURLSearchParams;
-
   if (browser) {
-    searchParams = new SvelteURLSearchParams(window.location.search);
+    const searchParams = new SvelteURLSearchParams(window.location.search);
+
+    $effect(() => {
+      if (searchParams) setFilter(getFilterOptionFormSearchParams(searchParams));
+    });
   }
-
-  $effect(() => {
-    if (searchParams) setFilter(getFilterOptionFormSearchParams(searchParams));
-
-    setPage(URLSearchParamsToPage(searchParams));
-  });
 </script>
 
 <svelte:head>

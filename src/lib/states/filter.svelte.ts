@@ -41,21 +41,25 @@ export function setFilter(filterOption: PostFilterOption) {
 }
 
 export function toggleCategory(category: string): void {
-  const index = filter.categories.findIndex((v) => v === category);
+  const isPresent = filter.categories.includes(category);
 
-  if (index === -1) {
-    filter.categories.push(category);
+  if (isPresent) {
+    filter.categories = filter.categories.filter((v) => v !== category);
   } else {
-    filter.categories.splice(index, 1);
+    filter.categories = [...filter.categories, category];
   }
+
+  console.info("필터옵션 변경됨", $state.snapshot(filter));
 }
 
 export function toggleTag(tag: string): void {
-  const index = filter.tags.findIndex((v) => v === tag);
+  const isPresent = filter.tags.includes(tag);
 
-  if (index === -1) {
-    filter.tags.push(tag);
+  if (isPresent) {
+    filter.tags = filter.tags.filter((v) => v !== tag);
   } else {
-    filter.tags.splice(index, 1);
+    filter.tags = [...filter.tags, tag];
   }
+
+  console.info("필터옵션 변경됨", $state.snapshot(filter));
 }
