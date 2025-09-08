@@ -48,8 +48,6 @@ export function toggleCategory(category: string): void {
   } else {
     filter.categories = [...filter.categories, category];
   }
-
-  console.info("필터옵션 변경됨", $state.snapshot(filter));
 }
 
 export function toggleTag(tag: string): void {
@@ -60,6 +58,4 @@ export function toggleTag(tag: string): void {
   } else {
     filter.tags = [...filter.tags, tag];
   }
-
-  console.info("필터옵션 변경됨", $state.snapshot(filter));
 }

@@ -8,7 +8,6 @@
     const allTocLinks = document.querySelectorAll<HTMLAnchorElement>(".toc .toc-link");
 
     if (headers.length === 0 || allTocLinks.length === 0) {
-      console.warn("TOC Observer: Required header or toc-link elements were not found.");
       return { destroy: () => {} };
     }
 
