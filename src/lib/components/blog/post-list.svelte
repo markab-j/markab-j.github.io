@@ -29,7 +29,7 @@
   });
 </script>
 
-<section class="flex min-h-screen flex-col gap-4">
+<section class="flex min-h-screen flex-col">
   {#if filteredPosts.length === 0}
     <div class="flex h-40 items-center justify-center text-center">
       <p class="text-muted-foreground">표시할 포스트가 없습니다.</p>
@@ -41,7 +41,7 @@
         href={resolve(`/blog/${post.slug}`)}
       >
         <article
-          class="hover:bg-muted flex items-center justify-between gap-x-6 p-4 transition-colors"
+          class="hover:bg-muted flex items-center justify-between p-4 gap-x-6 transition-colors"
         >
           <div class="flex-grow">
             <div class="group relative">
