@@ -36,7 +36,6 @@ coverHeight: 9
 
 
 **Note:** This document is itself written using Markdown; you
-can [see the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
 
 ----
 
@@ -238,7 +237,7 @@ to be indented *twice* -- 8 spaces or two tabs:
 
 *   A list item with a code block:
 
-        <code goes here>
+    
 
 ### Code Blocks
 

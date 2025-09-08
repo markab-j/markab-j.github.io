@@ -40,7 +40,7 @@
   <div class="mt-12 flex justify-center space-x-2">
     {#each allCategories as category, i (i)}
       <CategoryBadge {category} />
-    {/each}ㅈ
+    {/each}
   </div>
 
   <div class="mt-16 grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">
