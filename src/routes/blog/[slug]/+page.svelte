@@ -81,7 +81,7 @@
     <TocHighlighter />
     <PostContent />
   </section>
-  <footer class="border-t-border border-t py-4 mt-24">
+  <footer class="border-t-border mt-24 border-t py-4">
     <section class="flex flex-wrap gap-2">
       {#each tags as tag, i (i)}
         <PostTagBadge {tag} />

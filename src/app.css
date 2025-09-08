@@ -168,7 +168,7 @@ http://scripts.sil.org/OFL
   }
 
   pre[data-code-title]:before {
-    @apply min-h-6 pb-1 border-b border-b-gray-700 dark:border-b-muted block text-xs;
+    @apply dark:border-b-muted block min-h-6 border-b border-b-gray-700 pb-1 text-xs;
     content: attr(data-code-title);
   }
 
@@ -182,7 +182,7 @@ http://scripts.sil.org/OFL
   }
 
   code > span {
-    @apply px-4
+    @apply px-4;
   }
 
   code[data-line-numbers] > span[data-line-number]::before {
@@ -208,7 +208,7 @@ http://scripts.sil.org/OFL
     }
 
     :not(pre) > code {
-      @apply bg-accent text-red-600 px-1.5 p-1 rounded-sm text-sm font-medium text-shadow-2xs;
+      @apply bg-accent rounded-sm p-1 px-1.5 text-sm font-medium text-red-600 text-shadow-2xs;
       font-family: "D2Coding", Consolas, "Courier New", monospace;
     }
 

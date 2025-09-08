@@ -18,7 +18,7 @@ tags:
 
 하지만 나는 플랫폼에 종속되지 않은 나만의 블로그가 가지고 싶었다.
 
-나는 평소 e-book보다 종이책을 고집하는 편인데, e-book은 서비스가 종료되면 다시는 볼 수 없기 때문이다. 블로그에 쓰는 내 글도 똑같다고 생각했다. 
+나는 평소 e-book보다 종이책을 고집하는 편인데, e-book은 서비스가 종료되면 다시는 볼 수 없기 때문이다. 블로그에 쓰는 내 글도 똑같다고 생각했다.
 지금 당장 호스팅이 망가져도 모든 글은 내 컴퓨터 안에 그대로 남아있으니까. 이 생각은 최근 한 도서 플랫폼의 이슈를 보며 이 생각은 더욱 확고해졌다.
 
 ## Svelte Kit을 선택한 이유
@@ -34,23 +34,28 @@ tags:
 그리고 무엇보다, 그냥 여러 가지 새로운 도구들을 직접 사용해보고 싶었다.
 
 # SvelteKit 프로젝트 초기 설정
+
 ## 개발 환경
+
 - `bun 1.2.21`
 - `Svelte ^5.0.0`
 - `Svelte Kit ^2.22.0`
 - `Typescript ^5.0.0`
 
 스벨트 킷 미니멀 템플릿을 사용했다.
+
 ```bash
 bunx sv create <프로젝트 이름>
 ```
 
 프로젝트 세부 설정에서는 아래와 같은 옵션을 활성화 했다.
+
 - Typescript Syntax 사용
 - Tailwind, Tailwind/typography
 - ESLint, Prettier
 
 ## 필수 설정
+
 정적 블로그를 만들기 위해서는 Svelte Kit에게 정적 빌드 환경임을 알려주어야 한다.
 
 두가지 작업이 필요하다.
@@ -58,6 +63,7 @@ bunx sv create <프로젝트 이름>
 1. **어댑터 변경**
 
 정적 빌드를 위한 어댑터를 설정해야 한다. 더욱 더 자세한 내용은 [Static Site Generation - Docs Svelte](https://svelte.dev/docs/kit/adapter-static)
+
 ```bash
 bun add -D @sveltejs/adapter-static
 ```
@@ -110,17 +116,17 @@ import { createHighlighter } from "@bitmachina/highlighter";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-		preprocess: [
-			vitePreprocess(),
-			mdsvex({
-				extensions: [".md"],
-			}),
-		],
-		kit: {
-			adapter: adapter(),
-		},
-		extensions: [".svelte", ".md"],
-	};
+  preprocess: [
+    vitePreprocess(),
+    mdsvex({
+      extensions: [".md"],
+    }),
+  ],
+  kit: {
+    adapter: adapter(),
+  },
+  extensions: [".svelte", ".md"],
+};
 ```
 
 # 동적 라우팅으로 게시글 페이지
@@ -166,8 +172,8 @@ export const load: PageLoad = async ({ params }: PageLoadEvent) => {
 
 ```typescript showLineNumbers
 interface MarkdownData {
-	metadata: unknown;
-	default: { render: Function };
+  metadata: unknown;
+  default: { render: Function };
 }
 ```
 
@@ -185,7 +191,7 @@ interface MarkdownData {
   import type { PageProps } from "./$types";
 
   const { data }: PageProps = $props();
-    
+
   const { title, description, date, tags, categories, coverImage, coverWidth, coverHeight } = data.meta;
   const { PostContent } = data;
 </script>
@@ -209,25 +215,25 @@ interface MarkdownData {
 
 ```typescript title="/blog/+page.ts" showLineNumbers
 export const load: PageLoad = async () => {
-	const allPosts: Post[] = await Promise.all(
-		Object.entries(import.meta.glob("/posts/*.md")).map(async ([path, resolver]) => {
-			const mdData = (await resolver()) as MarkdownData;
+  const allPosts: Post[] = await Promise.all(
+    Object.entries(import.meta.glob("/posts/*.md")).map(async ([path, resolver]) => {
+      const mdData = (await resolver()) as MarkdownData;
 
-			const metadata = PostMetadataSchema.parse(mdData.metadata);
+      const metadata = PostMetadataSchema.parse(mdData.metadata);
 
-			const slug = getSlug(path);
-			return {
-				...metadata,
-				slug,
-			};
-		})
-	);
-	// 필요에 따라 정렬이나 후처리 진행...
-    // 나는 추가로 카테고리와 태그를 추출하여 함께 전달했지만, 이 코드에서는 간소화했다.
-	return {
-		posts: allPosts,
-    };
-}
+      const slug = getSlug(path);
+      return {
+        ...metadata,
+        slug,
+      };
+    })
+  );
+  // 필요에 따라 정렬이나 후처리 진행...
+  // 나는 추가로 카테고리와 태그를 추출하여 함께 전달했지만, 이 코드에서는 간소화했다.
+  return {
+    posts: allPosts,
+  };
+};
 ```
 
 - `import.meta.glob`을 이용해 모든 게시글을 가져온다.
@@ -262,7 +268,7 @@ export const load: PageLoad = async () => {
 
 모든 것은 `도구`다.
 
-프레임워크, 라이브러리, 프로그래밍 언어까지도 결국 내가 원하는 결과물을 효율적으로 만들기 위한 도구다. 
+프레임워크, 라이브러리, 프로그래밍 언어까지도 결국 내가 원하는 결과물을 효율적으로 만들기 위한 도구다.
 특정 도구의 전문가가 되는 것도 의미 있지만, 더 중요한 것은 해결하려는 문제의 본질을 꿰뚫고 상황에 맞는 최적의 도구를 선택하고 활용하는 능력이다.
 
 도구를 잘 사용하는 사람이 되자.
