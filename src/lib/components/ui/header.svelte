@@ -49,24 +49,15 @@
         class="size-8"
       />
     </a>
-    <nav class="flex">
+    <nav class="flex gap-4">
       <ul class="flex items-center space-x-6 text-sm font-medium">
         {#each navItems as item, i (i)}
           {@render navItem(item)}
         {/each}
       </ul>
 
-      <div class="flex items-center space-x-4 pl-6">
+      <div class="flex items-center space-x-4 px-2">
         <ThemeToggle />
-        <a
-          href="https://github.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub 프로필"
-          class="hover:text-foreground/50 transition-colors duration-200"
-        >
-          <Github class="size-5" />
-        </a>
       </div>
     </nav>
   </div>
