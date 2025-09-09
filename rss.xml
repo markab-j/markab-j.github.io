@@ -4,13 +4,22 @@
         <title>markab-j's Blog</title>
         <link>https://markab-j.github.io</link>
         <description>Development Blog</description>
-        <lastBuildDate>Mon, 08 Sep 2025 14:52:05 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 09 Sep 2025 12:19:12 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
         <ttl>60</ttl>
         <copyright>Copyright 2025, Markab-j</copyright>
         <atom:link href="https://markab-j.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Nginx에선 502 Bad Gateway, 프록시 서버 로그에선 200 OK...?]]></title>
+            <link>https://markab-j.github.io/resolving-nginx-express-proxy-502-error</link>
+            <guid isPermaLink="true">https://markab-j.github.io/resolving-nginx-express-proxy-502-error</guid>
+            <pubDate>Tue, 09 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Nginx와 Express로 구성된 프록시 환경에서 특정 Spring 서버에만 502 에러가 발생하는 현상을 분석하고, 헤더 중복 문제와 해결 과정을 공유한다.]]></description>
+            <content:encoded><![CDATA[<p>Nginx와 Express로 구성된 프록시 환경에서 특정 Spring 서버에만 502 에러가 발생하는 현상을 분석하고, 헤더 중복 문제와 해결 과정을 공유한다.</p> <div style="margin-top: 50px; font-style: italic;"> <strong><a href="https://markab-j.github.io/resolving-nginx-express-proxy-502-error">Keep reading</a>.</strong> </div> <br /> <br />]]></content:encoded>
+            <author>markab.j.nn@gmail.com (markab-j, Jeong Yehwan)</author>
+        </item>
         <item>
             <title><![CDATA[SvelteKit으로 정적 블로그 만들기]]></title>
             <link>https://markab-j.github.io/creating-a-dev-blog-with-sveltekit-part-1</link>
