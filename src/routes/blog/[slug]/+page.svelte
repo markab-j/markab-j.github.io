@@ -77,7 +77,7 @@
       </div>
     </section>
   </header>
-  <section class="prose dark:prose-invert max-w-none">
+  <section class="prose dark:prose-invert prose-lime max-w-none">
     <TocHighlighter />
     <PostContent />
   </section>

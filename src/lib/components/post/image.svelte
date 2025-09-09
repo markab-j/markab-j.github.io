@@ -19,22 +19,22 @@
 </script>
 
 {#if caption}
-  <figure class="my-6 flex flex-col items-center">
+  <figure class="not-prose flex flex-col items-center px-2">
     <div class={`flex ${alignClasses[align]} w-full`}>
       <img
         {src}
         {alt}
         style={width ? `width: ${width}` : ""}
-        class="max-w-full"
+        class="mt-0 mb-0 max-w-full"
         loading="lazy"
       />
     </div>
-    <figcaption class="border-t-border w-[50%] border-t py-2 text-center text-sm text-gray-500">
+    <figcaption class="w-full text-center text-sm text-gray-500">
       {caption}
     </figcaption>
   </figure>
 {:else}
-  <div class={`my-6 flex ${alignClasses[align]} w-full`}>
+  <div class={`flex px-2 ${alignClasses[align]} w-full`}>
     <img
       {src}
       {alt}
