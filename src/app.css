@@ -186,13 +186,8 @@ http://scripts.sil.org/OFL
   }
 
   code[data-line-numbers] > span[data-line-number]::before {
+    @apply inline-block w-4 mx-4 text-right text-gray-500;
     content: attr(data-line-number);
-    display: inline-block;
-    width: 1rem;
-    margin-right: 1rem;
-    margin-left: 1rem;
-    text-align: right;
-    color: gray;
   }
 
   code > span[data-highlighted] {
