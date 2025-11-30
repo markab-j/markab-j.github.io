@@ -4,6 +4,7 @@
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import { browser } from "$app/environment";
   import Particles from "$lib/components/common/particles.svelte";
+  import BentoGrid from "@/components/home/bento-grid.svelte";
 
   function wordsAnimation() {
     gsap.set(".words", {
@@ -82,18 +83,11 @@
     <div class="mx-auto max-w-3xl space-y-8 p-8">
       <div class="h-[25vh]"></div>
       <h2 class="scroll-reveal text-4xl font-bold">Why Enjoyer?</h2>
-      <p class="scroll-reveal text-lg leading-relaxed text-center">
+      <p class="scroll-reveal text-center text-lg leading-relaxed">
         이유는 단순합니다. 그저 만들고 싶어서 만듭니다.
       </p>
 
-      <p class="scroll-reveal text-lg leading-relaxed">
-        여기에는 완벽하게 정리된 지식보다, 직접 부딪히며 얻은 경험과 고민이 그대로 남아 있습니다.
-        때로는 서툴고 불완전할지라도, 그런 과정 하나하나가 저를 조금씩 앞으로 나아가게 합니다.
-      </p>
-
-      <p class="scroll-reveal text-lg leading-relaxed">
-        기술을 파고들고 아이디어를 실제로 구현하는 과정 자체가 즐겁습니다.
-      </p>
+      <BentoGrid class="scroll-reveal" />
       <div class="h-[25vh]"></div>
     </div>
   </div>

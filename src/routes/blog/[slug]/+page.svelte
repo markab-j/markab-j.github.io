@@ -67,7 +67,7 @@
         <PostCategoryBadge {category} />
       {/each}
     </section>
-    <h1 class="mb-4 text-3xl font-bold md:text-5xl break-words break-keep">{title}</h1>
+    <h1 class="mb-4 text-3xl font-bold break-words break-keep md:text-5xl">{title}</h1>
     <section
       class="flex items-center justify-center space-x-4 text-sm text-gray-500 dark:text-gray-400"
     >
