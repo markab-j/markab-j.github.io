@@ -22,19 +22,19 @@
   };
 </script>
 
-<section class="col-span-1 space-y-6 rounded-xl border border-border bg-card/50 p-8 lg:col-span-2">
+<section class="border-border bg-card/50 col-span-1 space-y-6 rounded-xl border p-8 lg:col-span-2">
   <div class="space-y-1">
     <h2 class="text-2xl font-bold tracking-tight">Skills</h2>
   </div>
 
   <div class="grid gap-6 sm:grid-cols-2">
     <div class="space-y-3">
-      <h3 class="text-sm font-semibold text-foreground/90">Proficient</h3>
+      <h3 class="text-foreground/90 text-sm font-semibold">Proficient</h3>
       <div class="flex flex-wrap gap-2">
         {#each skills.proficient as skill, i (i)}
           <Badge
             variant="secondary"
-            class="flex items-center gap-2 px-3 py-1.5 transition-all hover:bg-secondary/80"
+            class="hover:bg-secondary/80 flex items-center gap-2 px-3 py-1.5 transition-all"
           >
             <div class="h-4 w-4">
               <skill.icon />
@@ -46,7 +46,7 @@
     </div>
 
     <div class="space-y-3">
-      <h3 class="text-sm font-semibold text-foreground/90">Learning</h3>
+      <h3 class="text-foreground/90 text-sm font-semibold">Learning</h3>
       <div class="flex flex-wrap gap-2">
         {#each skills.learning as skill, i (i)}
           <Badge

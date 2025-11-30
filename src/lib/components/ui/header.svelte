@@ -37,8 +37,8 @@
 
 <header class="fixed inset-x-0 top-0 z-50 p-4">
   <div
-    class="mx-auto flex min-h-16 max-w-4xl items-center justify-between overflow-hidden
-				 rounded-2xl bg-white/50 px-4 py-2 shadow-lg ring-1 ring-black/5 backdrop-blur-sm dark:bg-secondary/50"
+    class="dark:bg-secondary/50 mx-auto flex min-h-16 max-w-4xl items-center justify-between
+				 overflow-hidden rounded-2xl bg-white/50 px-4 py-2 shadow-lg ring-1 ring-black/5 backdrop-blur-sm"
   >
     <BorderBeam
       borderWidth={1}
