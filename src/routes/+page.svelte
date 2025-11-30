@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { mode } from "mode-watcher";
   import { onMount } from "svelte";
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -61,7 +62,7 @@
     <div class="-mt-header flex h-full items-center justify-center">
       <div class="flex text-7xl font-extrabold md:text-9xl">
         <span class="mr-6">I'm</span>
-        <div class="inline-block h-[1.1em] overflow-hidden align-top">
+        <div class="inline-block h-[1.1em] overflow-hidden align-top select-none">
           <div class="words">
             <p class="pb-[0.2em]">Not a Developer</p>
             <p class="pb-[0.2em]">Just an Enjoyer</p>
@@ -77,7 +78,7 @@
       class="absolute inset-0 z-0"
       quantity={100}
       ease={80}
-      color="#333"
+      color={mode.current === "dark" ? "#ffffff" : "#333333"}
       refresh
     />
     <div class="mx-auto max-w-3xl space-y-8 p-8">
