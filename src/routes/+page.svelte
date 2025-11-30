@@ -3,6 +3,7 @@
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import { browser } from "$app/environment";
+  import Particles from "$lib/components/common/particles.svelte";
 
   function wordsAnimation() {
     gsap.set(".words", {
@@ -71,12 +72,18 @@
   </div>
 
   <div class="bg-background/80 relative backdrop-blur-md">
+    <Particles
+      class="absolute inset-0 z-0"
+      quantity={100}
+      ease={80}
+      color="#333"
+      refresh
+    />
     <div class="mx-auto max-w-3xl space-y-8 p-8">
       <div class="h-[25vh]"></div>
-      <h2 class="scroll-reveal text-4xl font-bold">즐기는 사람</h2>
-      <p class="scroll-reveal text-lg leading-relaxed">
-        저는 스스로를 ‘개발자’라고 정의하지 않습니다. 그저 무언가를 만들고, 실험하고, 문제를
-        해결하는 과정을 즐기는 사람일 뿐입니다.
+      <h2 class="scroll-reveal text-4xl font-bold">Why Enjoyer?</h2>
+      <p class="scroll-reveal text-lg leading-relaxed text-center">
+        이유는 단순합니다. 그저 만들고 싶어서 만듭니다.
       </p>
 
       <p class="scroll-reveal text-lg leading-relaxed">
