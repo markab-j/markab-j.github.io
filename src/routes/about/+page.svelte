@@ -3,18 +3,13 @@
   import SkillSection from "$lib/components/about/skill-section.svelte";
   import TimelineSection from "$lib/components/about/timeline-section.svelte";
   import UserProfile from "$lib/components/about/user-profile.svelte";
-  import type { SkillInfo, TimelineItem, UserInfo } from "$lib/types/about";
+  import type { TimelineItem, UserInfo } from "$lib/types/about";
 
   const userInfo: UserInfo = {
     nickname: "markab-j",
     name: "Jeong Yehwan",
     githubId: "markab-j",
     email: "markab.j.nn@gmail.com",
-  };
-
-  const skillInfo: SkillInfo = {
-    proficient: ["TypeScript", "JavaScript", "Express.js", "NestJS"],
-    learning: ["React", "Svelte", "SvelteKit"],
   };
 
   const timeline: TimelineItem[] = [
@@ -39,5 +34,5 @@
     <TimelineSection {timeline} />
   </div>
 
-  <SkillSection {skillInfo} />
+  <SkillSection />
 </section>

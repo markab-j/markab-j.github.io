@@ -8,11 +8,6 @@ export type UserInfo = {
   readonly email: string;
 };
 
-export type SkillInfo = {
-  readonly proficient: string[];
-  readonly learning: string[];
-};
-
 export type TimelineItem = {
   icon: Component<IconProps>;
   date: string;

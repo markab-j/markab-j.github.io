@@ -1,35 +1,65 @@
 <script lang="ts">
-  import type { SkillInfo } from "$lib/types/about";
+  import { Badge } from "$lib/components/ui/badge";
 
-  interface SkillSectionProps {
-    skillInfo: SkillInfo;
-  }
+  import Typescript from "$lib/components/icons/typescript.svelte";
+  import Javascript from "$lib/components/icons/javascript.svelte";
+  import Express from "$lib/components/icons/express.svelte";
+  import Nestjs from "$lib/components/icons/nestjs.svelte";
+  import React from "$lib/components/icons/react.svelte";
+  import SvelteIcon from "$lib/components/icons/svelte.svelte";
 
-  const { skillInfo }: SkillSectionProps = $props();
+  const skills = {
+    proficient: [
+      { name: "TypeScript", icon: Typescript },
+      { name: "JavaScript", icon: Javascript },
+      { name: "Express.js", icon: Express },
+      { name: "NestJS", icon: Nestjs },
+    ],
+    learning: [
+      { name: "React", icon: React },
+      { name: "Svelte & SvelteKit", icon: SvelteIcon },
+    ],
+  };
 </script>
 
-<section class="border-border bg-card/50 space-y-6 rounded-xl border p-8 lg:col-span-2">
-  <h2 class="text-2xl font-bold tracking-tight">Skills</h2>
-  <div>
-    <h3 class="text-accent-foreground/80 text-base font-semibold">Proficient</h3>
-    <div class="mt-3 flex flex-wrap gap-2">
-      {#each skillInfo.proficient as skill (skill)}
-        <span class="rounded-md border border-gray-200 px-2 py-0.5 text-sm font-medium">
-          {skill}
-        </span>
-      {/each}
-    </div>
+<section class="col-span-1 space-y-6 rounded-xl border border-border bg-card/50 p-8 lg:col-span-2">
+  <div class="space-y-1">
+    <h2 class="text-2xl font-bold tracking-tight">Skills</h2>
   </div>
-  <div>
-    <h3 class="text-accent-foreground/80 text-base font-semibold">Learning</h3>
-    <div class="mt-3 flex flex-wrap gap-2">
-      {#each skillInfo.learning as skill (skill)}
-        <span
-          class="rounded-md border border-dashed border-gray-200 px-2 py-0.5 text-sm font-medium"
-        >
-          {skill}
-        </span>
-      {/each}
+
+  <div class="grid gap-6 sm:grid-cols-2">
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-foreground/90">Proficient</h3>
+      <div class="flex flex-wrap gap-2">
+        {#each skills.proficient as skill, i (i)}
+          <Badge
+            variant="secondary"
+            class="flex items-center gap-2 px-3 py-1.5 transition-all hover:bg-secondary/80"
+          >
+            <div class="h-4 w-4">
+              <skill.icon />
+            </div>
+            <span>{skill.name}</span>
+          </Badge>
+        {/each}
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-foreground/90">Learning</h3>
+      <div class="flex flex-wrap gap-2">
+        {#each skills.learning as skill, i (i)}
+          <Badge
+            variant="outline"
+            class="flex items-center gap-2 px-3 py-1.5 opacity-80 transition-all hover:opacity-100"
+          >
+            <div class="h-3.5 w-3.5 grayscale">
+              <skill.icon />
+            </div>
+            <span>{skill.name}</span>
+          </Badge>
+        {/each}
+      </div>
     </div>
   </div>
 </section>
