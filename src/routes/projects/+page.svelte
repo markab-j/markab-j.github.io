@@ -25,6 +25,14 @@
       url: "github.com/markab-j/pixelizer",
       year: 2025,
     },
+    {
+      title: "Idleama",
+      description: "Desktop Idle Software.",
+      imageUrl: "https://raw.githubusercontent.com/markab-j/Idleama/refs/heads/main/docs/icon.png",
+      tags: ["Typescript", "Tauri", "Software"],
+      url: "github.com/markab-j/Idleama",
+      year: 2025,
+    }
   ];
 
   onMount(() => {
