@@ -27,7 +27,7 @@
     },
     {
       title: "Idleama",
-      description: "Desktop Idle Software.",
+      description: "Tauri-based idle diorama software designed for decorating your desktop.",
       imageUrl: "https://raw.githubusercontent.com/markab-j/Idleama/refs/heads/main/docs/icon.png",
       tags: ["Typescript", "Tauri", "Software"],
       url: "github.com/markab-j/Idleama",

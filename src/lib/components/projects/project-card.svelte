@@ -36,7 +36,7 @@
         </Card.Title>
         <ArrowUpRight class="h-5 w-5 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100" />
       </div>
-      <Card.Description class="line-clamp-2">
+      <Card.Description class="line-clamp-3">
         {project.description}
       </Card.Description>
     </Card.Header>
