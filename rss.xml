@@ -4,7 +4,7 @@
         <title>markab-j's Blog</title>
         <link>https://markab-j.github.io</link>
         <description>Development Blog</description>
-        <lastBuildDate>Tue, 02 Dec 2025 13:22:12 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 02 Dec 2025 13:39:44 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
@@ -18,6 +18,15 @@
             <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[자바스크립트에서 연산자 오버로딩(Operator Overloading)을 구현할 수 있을까?]]></description>
             <content:encoded><![CDATA[<p>자바스크립트에서 연산자 오버로딩(Operator Overloading)을 구현할 수 있을까?</p> <div style="margin-top: 50px; font-style: italic;"> <strong><a href="https://markab-j.github.io/javascript-operator-overload">Keep reading</a>.</strong> </div> <br /> <br />]]></content:encoded>
+            <author>markab.j.nn@gmail.com (markab-j, Jeong Yehwan)</author>
+        </item>
+        <item>
+            <title><![CDATA[자바스크립트 Reflect API]]></title>
+            <link>https://markab-j.github.io/javascript-reflection-api</link>
+            <guid isPermaLink="true">https://markab-j.github.io/javascript-reflection-api</guid>
+            <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[자바스크립트 Reflect API 찍어먹기]]></description>
+            <content:encoded><![CDATA[<p>자바스크립트 Reflect API 찍어먹기</p> <div style="margin-top: 50px; font-style: italic;"> <strong><a href="https://markab-j.github.io/javascript-reflection-api">Keep reading</a>.</strong> </div> <br /> <br />]]></content:encoded>
             <author>markab.j.nn@gmail.com (markab-j, Jeong Yehwan)</author>
         </item>
         <item>
