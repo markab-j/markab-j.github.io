@@ -4,13 +4,22 @@
         <title>markab-j's Blog</title>
         <link>https://markab-j.github.io</link>
         <description>Development Blog</description>
-        <lastBuildDate>Sun, 30 Nov 2025 09:31:28 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 02 Dec 2025 13:22:12 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ko</language>
         <ttl>60</ttl>
         <copyright>Copyright 2025, Markab-j</copyright>
         <atom:link href="https://markab-j.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[자바스크립트 연산자 오버로딩]]></title>
+            <link>https://markab-j.github.io/javascript-operator-overload</link>
+            <guid isPermaLink="true">https://markab-j.github.io/javascript-operator-overload</guid>
+            <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[자바스크립트에서 연산자 오버로딩(Operator Overloading)을 구현할 수 있을까?]]></description>
+            <content:encoded><![CDATA[<p>자바스크립트에서 연산자 오버로딩(Operator Overloading)을 구현할 수 있을까?</p> <div style="margin-top: 50px; font-style: italic;"> <strong><a href="https://markab-j.github.io/javascript-operator-overload">Keep reading</a>.</strong> </div> <br /> <br />]]></content:encoded>
+            <author>markab.j.nn@gmail.com (markab-j, Jeong Yehwan)</author>
+        </item>
         <item>
             <title><![CDATA[mdsvex rehype-pretty-code 인코딩 문제 해결]]></title>
             <link>https://markab-j.github.io/using-bitmachina-highlighter-with-mdsvex</link>
