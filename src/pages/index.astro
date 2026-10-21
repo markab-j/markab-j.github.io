@@ -1,21 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 // Component Imports
-import CallToAction from '../components/CallToAction.astro';
+import CallToAction from "../components/CallToAction.astro";
 // Page section components
-import ContactCTA from '../components/ContactCTA.astro';
-import Hero from '../components/Hero.astro';
-import HeroParticles from '../components/HeroParticles.jsx';
-import Icon from '../components/Icon.astro';
-import TextType from '../components/react-bits/TextType.jsx';
-import TechLogoLoop from '../components/TechLogoLoop.jsx';
-import Masonry from '../components/react-bits/Masonry.jsx';
-import '../styles/work-masonry.css';
+import ContactCTA from "../components/ContactCTA.astro";
+import Hero from "../components/Hero.astro";
+import HeroParticles from "../components/HeroParticles.jsx";
+import Icon from "../components/Icon.astro";
+import TextType from "../components/react-bits/TextType.jsx";
+import TechLogoLoop from "../components/TechLogoLoop.jsx";
+import Masonry from "../components/react-bits/Masonry.jsx";
+import "../styles/work-masonry.css";
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 // Content Fetching: List four most recent work projects
-const projects = (await getCollection('work'))
+const projects = (await getCollection("work"))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 4);
 
@@ -35,12 +35,17 @@ const projects = (await getCollection('work'))
 					tagline="Welcome to my personal space on the web."
 					align="start"
 				>
+					<Fragment slot="title"
+						>Hello, my name is <span class="name-highlight"
+							>markab-j</span
+						></Fragment
+					>
 					<div class="interests">
 						<TextType
 							client:load
 							as="p"
 							prefix="I like "
-							text={['developing', 'writing', 'planning']}
+							text={["developing", "writing", "planning"]}
 							typingSpeed={90}
 							pauseDuration={1800}
 							deletingSpeed={40}
@@ -48,7 +53,11 @@ const projects = (await getCollection('work'))
 							cursorStyle="bar"
 							cursorColor="var(--ink-coral)"
 							prefixColor="var(--gray-200)"
-							textColors={['var(--link-color)', 'var(--ink-coral)', 'var(--ink-peach)']}
+							textColors={[
+								"var(--link-color)",
+								"var(--ink-coral)",
+								"var(--ink-peach)",
+							]}
 						/>
 					</div>
 				</Hero>
@@ -69,7 +78,13 @@ const projects = (await getCollection('work'))
 					<p>A selection of my projects.</p>
 				</header>
 
-				<div class:list={['gallery', 'work-gallery', { 'single-project': projects.length === 1 }]}>
+				<div
+					class:list={[
+						"gallery",
+						"work-gallery",
+						{ "single-project": projects.length === 1 },
+					]}
+				>
 					<Masonry
 						client:visible
 						items={projects.map(({ id, data }) => ({
@@ -77,9 +92,11 @@ const projects = (await getCollection('work'))
 							title: data.title,
 							description: data.description,
 							url: `/work/${id}/`,
-							...(data.img ? { img: data.img, alt: data.img_alt } : { width: 600, height: 400 }),
+							...(data.img
+								? { img: data.img, alt: data.img_alt }
+								: { width: 600, height: 400 }),
 						}))}
-						columns={projects.length === 1 ? 1 : 'auto'}
+						columns={projects.length === 1 ? 1 : "auto"}
 						columnWidth={360}
 						gap={24}
 						radius={24}
@@ -131,15 +148,31 @@ const projects = (await getCollection('work'))
 		inset-inline: calc(50% - 50vw);
 		z-index: -1;
 		pointer-events: none;
-		mask-image: linear-gradient(to bottom, transparent, black 10%, black 80%, transparent);
+		mask-image: linear-gradient(
+			to bottom,
+			transparent,
+			black 10%,
+			black 80%,
+			transparent
+		);
 	}
 
 	.hero :global(.title) {
 		font-weight: 750;
+		line-height: 1.5em;
 	}
 
 	.hero :global(.tagline) {
 		font-weight: 500;
+	}
+
+	.name-highlight {
+		display: inline-block;
+		padding: 0.04em 0.18em;
+		border-radius: 0.2em;
+		background: var(--color-mint);
+		color: var(--text-on-pastel);
+		white-space: nowrap;
 	}
 
 	.interests {
@@ -158,8 +191,7 @@ const projects = (await getCollection('work'))
 		aspect-ratio: 5 / 4;
 		object-fit: contain;
 		object-position: top;
-		filter:
-			drop-shadow(0.5px 0 0 var(--brand-500))
+		filter: drop-shadow(0.5px 0 0 var(--brand-500))
 			drop-shadow(-0.5px 0 0 var(--brand-500))
 			drop-shadow(0 0.5px 0 var(--brand-500))
 			drop-shadow(0 -0.5px 0 var(--brand-500))
@@ -211,12 +243,12 @@ const projects = (await getCollection('work'))
 	@media (min-width: 50em) {
 		.section {
 			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+			grid-template-areas: "header header header header" "gallery gallery gallery gallery";
 			gap: 5rem;
 		}
 
 		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+			grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
 		}
 
 		.section-header {
@@ -241,5 +273,4 @@ const projects = (await getCollection('work'))
 			grid-area: cta;
 		}
 	}
-
 </style>
