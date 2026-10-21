@@ -58,6 +58,39 @@ astro.config.mjs             대표 사이트 주소
 
 제공된 SVG의 원래 색상은 보존했습니다. 버튼과 선택 메뉴에는 밝은 민트 배경과 어두운 글자를 조합합니다. 테마 전환은 시스템 설정을 기본값으로 사용하며 사용자의 선택을 브라우저에 저장합니다.
 
+## React Bits 사용
+
+React, React DOM, `@astrojs/react`와 TypeScript 타입이 설치되어 있습니다. Astro 설정에 React 통합과 JSX 변환을 등록했으므로 `.tsx` 컴포넌트를 사용할 수 있습니다.
+
+React Bits는 전체 라이브러리를 설치하는 방식이 아니라 필요한 컴포넌트의 소스를 프로젝트로 가져오는 방식입니다. 현재 사이트는 일반 CSS를 사용하므로 **TypeScript + CSS (`TS-CSS`)** 버전을 선택하세요. Tailwind 버전을 쓰려면 별도로 Tailwind 설정이 필요합니다.
+
+1. [React Bits](https://reactbits.dev)의 원하는 컴포넌트에서 **Code → TypeScript → CSS**를 선택합니다.
+2. 소스와 CSS를 `src/components/react-bits/` 아래에 함께 저장합니다. 예를 들어 `StarBorder.tsx`와 `StarBorder.css`를 같은 폴더에 둡니다.
+3. 해당 컴포넌트에 표시된 의존성만 `bun add 패키지명`으로 설치합니다. CSS import 경로는 저장한 위치에 맞춥니다.
+4. Astro 페이지에서 컴포넌트를 import하고 클라이언트 지시어와 함께 사용합니다.
+
+예를 들어 Star Border 소스를 추가한 뒤 다음처럼 사용할 수 있습니다.
+
+```astro
+---
+import StarBorder from '../components/react-bits/StarBorder';
+---
+
+<StarBorder client:load color="#9CDBD9">
+  markab-j
+</StarBorder>
+```
+
+- `client:load`: 페이지 로드 시 실행합니다. 첫 화면의 애니메이션에 사용합니다.
+- `client:visible`: 화면에 보일 때 실행합니다. 아래쪽 섹션에 적합합니다.
+- `client:only="react"`: 렌더링 시점에 `window`, `document`, WebGL 등 브라우저 환경을 요구하는 컴포넌트에 사용합니다.
+
+지시어가 없으면 정적 HTML만 렌더링되므로 상호작용과 애니메이션이 실행되지 않습니다. 함수 형태의 이벤트 핸들러가 필요하면 `.tsx` 래퍼 안에서 정의하세요. Astro에서 전달하는 props는 직렬화 가능한 값으로 유지합니다.
+
+컴포넌트 CSS에서는 `var(--brand-200)` 등 기존 디자인 토큰을 사용할 수 있습니다. JavaScript에서 계산하는 색상이나 WebGL 색상에는 컴포넌트가 지원하는 실제 색상값을 전달하세요. 특정 React Bits 컴포넌트와 부가 애니메이션 패키지는 아직 추가하지 않았습니다.
+
+공식 문서: [React Bits 설치](https://reactbits.dev/get-started/installation) · [Astro React 통합](https://docs.astro.build/en/guides/integrations-guide/react/)
+
 ## 콘텐츠 수정
 
 - 홈: `src/pages/index.astro`
