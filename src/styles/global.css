@@ -143,6 +143,27 @@ body {
 	margin: 0;
 }
 
+
+/* Prevent casual selection and native content dragging. */
+body {
+	-webkit-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+}
+
+input,
+textarea,
+[contenteditable]:not([contenteditable='false']) {
+	-webkit-user-select: text;
+	user-select: text;
+	-webkit-touch-callout: default;
+}
+
+img,
+a {
+	-webkit-user-drag: none;
+}
+
 img {
 	max-width: 100%;
 	height: auto;

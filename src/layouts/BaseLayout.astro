@@ -42,6 +42,21 @@ const { title, description } = Astro.props;
 			<Footer />
 		</div>
 
+
+		<script>
+			// Document listeners continue working through client-side page swaps.
+			const preventContentAction = (event: Event) => {
+				const target = event.target;
+				if (
+					target instanceof Element &&
+					target.closest('input, textarea, [contenteditable]:not([contenteditable="false"])')
+				) return;
+				event.preventDefault();
+			};
+			document.addEventListener('dragstart', preventContentAction);
+			document.addEventListener('contextmenu', preventContentAction);
+		</script>
+
 		<style>
 			:root {
 				--bg-scale: 1;
