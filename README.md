@@ -60,7 +60,7 @@ astro.config.mjs             대표 사이트 주소
 - 소개 문구: TextType으로 `I like developing / writing / planning`을 순환 표시
 - 기술 로고 영역: 중립 배경·테두리와 기본 본문색
 - 연락처 영역: 페이지와 이어지는 배경, 피치·코랄 버튼
-- GooeyNav: 민트 선택 표시와 연두·피치·코랄 물방울
+- GooeyNav: 민트 선택 표시와 연두·피치·코랄 물방울. 바깥쪽 StarBorder 배경과 글자는 테마별 회색 토큰을, 별빛은 `--link-color`, 잔상은 `--ink-coral`을 사용해 라이트·다크 모드에 맞춰 변경합니다 (6초 주기, sparkle, hover 없음).
 - StaggeredMenu: 피치·코랄 전환 레이어
 - 상단 Particles·ClickSpark: 네 가지 팔레트 색상
 

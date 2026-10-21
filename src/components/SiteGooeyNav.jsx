@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import GooeyNav from './react-bits/GooeyNav';
+import StarBorder from './react-bits/StarBorder';
 
 export default function SiteGooeyNav({ items, initialActiveIndex }) {
 	const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
@@ -8,6 +9,8 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 		color: '#9CDBD9',
 		colors: ['#DCEDC1', '#FFD3B6', '#FFAAA5'],
 		activeTextColor: '#123735',
+		starColor: '#205e5b',
+		starTrailColor: '#853e3a',
 	});
 
 	useEffect(() => {
@@ -28,6 +31,8 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 					tokens.getPropertyValue(token).trim(),
 				),
 				activeTextColor: tokens.getPropertyValue('--text-on-pastel').trim(),
+				starColor: tokens.getPropertyValue('--link-color').trim(),
+				starTrailColor: tokens.getPropertyValue('--ink-coral').trim(),
 			});
 		};
 		updatePage();
@@ -41,20 +46,37 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 		};
 	}, [items]);
 
+	const { starColor, starTrailColor, ...navAppearance } = appearance;
+
 	return (
-		<GooeyNav
-			items={items}
-			activeIndex={activeIndex}
-			onChange={setActiveIndex}
-			{...appearance}
-			style={{
-				'--gn-frame': 'var(--surface-lime)',
-				'--gn-frame-edge': 'var(--border-accent)',
-				'--gn-frame-highlight': 'var(--gray-999_40)',
-				'--gn-frame-shadow': 'var(--shadow-md)',
-				'--gn-ink': 'var(--gray-100)',
-				'--gn-muted': 'var(--gray-300)',
-			}}
-		/>
+		<StarBorder
+			as="div"
+			color={starColor}
+			trailColor={starTrailColor}
+			duration={6}
+			direction="clockwise"
+			stars={1}
+			trailLength={0.3}
+			thickness={1}
+			radius={12}
+			glow={0.7}
+			hover="none"
+			sparkle
+			clickPulse
+			theme={appearance.theme}
+			backgroundColor="var(--gray-999)"
+			textColor="var(--gray-100)"
+			borderColor="var(--gray-800)"
+			style={{ padding: '6px' }}
+		>
+			<GooeyNav
+				items={items}
+				activeIndex={activeIndex}
+				onChange={setActiveIndex}
+				{...navAppearance}
+				frame={false}
+				style={{ '--gn-ink': 'var(--gray-100)', '--gn-muted': 'var(--gray-300)' }}
+			/>
+		</StarBorder>
 	);
 }
