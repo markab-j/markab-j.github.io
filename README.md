@@ -48,15 +48,15 @@ astro.config.mjs             대표 사이트 주소
 
 | 팔레트 토큰 | 값 | 역할 |
 | --- | --- | --- |
-| `--color-mint` | `#9CDBD9` (`--brand-200`) | 브랜드, 선택 메뉴, Developer 배지 |
-| `--color-lime` | `#DCEDC1` | Enjoyer 배지, 기술 영역, 배경 |
-| `--color-peach` | `#FFD3B6` | Writer 배지, 버튼 시작색, 따뜻한 배경 |
+| `--color-mint` | `#9CDBD9` (`--brand-200`) | 브랜드, 선택 메뉴, 파티클 |
+| `--color-lime` | `#DCEDC1` | 메뉴 물방울, 파티클 |
+| `--color-peach` | `#FFD3B6` | 버튼 시작색, 따뜻한 상단 배경 |
 | `--color-coral` | `#FFAAA5` | 버튼 끝색, 연락처 영역, 메뉴 전환 |
 
 기존 `--brand-50`부터 `--brand-900`까지의 민트 명도 팔레트도 유지합니다. `--surface-mint/lime/peach/coral`은 카드와 영역 배경에 쓰는 테마별 색상이고, `--glow-mint`와 `--glow-peach`는 페이지 상단의 배경 그라데이션에 사용합니다. 중간·하단과 섹션별 배경 그라데이션은 사용하지 않습니다. `--ink-lime/peach/coral`은 라이트 모드에서는 어두운 파생색, 다크 모드에서는 해당 파스텔 색으로 글자와 아이콘의 대비를 확보합니다. `--text-on-pastel`은 밝은 버튼과 배지 위의 어두운 글자색입니다.
 
 - 주요 버튼: 피치 → 코랄 그라데이션
-- 역할 배지: 민트·연두·피치
+- 소개 문구: TextType으로 `I like developing / writing / planning`을 순환 표시
 - Skills: 중립 배경과 서로 다른 아이콘 색상
 - 기술 로고 영역: 중립 배경·테두리와 기본 본문색
 - 연락처 영역: 페이지와 이어지는 배경, 피치·코랄 버튼
@@ -112,7 +112,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 - 페이지 기본 메타데이터: `src/components/MainHead.astro`
 - 프로젝트: `src/content/work/`의 Markdown 파일
 
-프로젝트 데이터, 홈의 역할·Skills에는 Astro 포트폴리오 템플릿의 예시가 남아 있습니다. 공개 전에 실제 이력과 프로젝트로 교체하세요.
+프로젝트 데이터, 홈의 Skills에는 Astro 포트폴리오 템플릿의 예시가 남아 있습니다. 공개 전에 실제 이력과 프로젝트로 교체하세요.
 
 ## GitHub Pages 배포
 

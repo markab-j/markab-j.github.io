@@ -8,7 +8,7 @@ import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import HeroParticles from '../components/HeroParticles.jsx';
 import Icon from '../components/Icon.astro';
-import Pill from '../components/Pill.astro';
+import TextType from '../components/react-bits/TextType.jsx';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 import Skills from '../components/Skills.astro';
 import TechLogoLoop from '../components/TechLogoLoop.jsx';
@@ -36,16 +36,21 @@ const projects = (await getCollection('work'))
 					tagline="Welcome to my personal space on the web."
 					align="start"
 				>
-					<div class="roles">
-						<Pill>
-							<Icon icon="code" size="1.33em" /> Developer
-						</Pill>
-						<Pill tone="lime">
-							<Icon icon="smiley" size="1.33em" /> Enjoyer
-						</Pill>
-						<Pill tone="peach">
-							<Icon icon="pencil-line" size="1.33em" /> Writer
-						</Pill>
+					<div class="interests">
+						<TextType
+							client:load
+							as="p"
+							prefix="I like "
+							text={['developing', 'writing', 'planning']}
+							typingSpeed={90}
+							pauseDuration={1800}
+							deletingSpeed={40}
+							typeEffect="rise"
+							cursorStyle="bar"
+							cursorColor="var(--ink-coral)"
+							prefixColor="var(--gray-200)"
+							textColors={['var(--link-color)', 'var(--ink-coral)', 'var(--ink-peach)']}
+						/>
 					</div>
 				</Hero>
 
@@ -120,8 +125,16 @@ const projects = (await getCollection('work'))
 		mask-image: linear-gradient(to bottom, transparent, black 10%, black 80%, transparent);
 	}
 
-	.roles {
-		display: none;
+	.interests {
+		font-family: var(--font-brand);
+		font-size: var(--text-lg);
+		font-weight: 500;
+	}
+
+	.interests :global(.text-type) {
+		min-height: 1.5em;
+		min-width: 18ch;
+		line-height: 1.5;
 	}
 
 	.hero img {
@@ -144,10 +157,9 @@ const projects = (await getCollection('work'))
 			gap: 3.75rem;
 		}
 
-		.roles {
+		.interests {
 			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
+			font-size: var(--text-xl);
 		}
 
 		.hero img {
