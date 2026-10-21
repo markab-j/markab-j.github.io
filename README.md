@@ -57,7 +57,6 @@ astro.config.mjs             대표 사이트 주소
 
 - 주요 버튼: 피치 → 코랄 그라데이션
 - 소개 문구: TextType으로 `I like developing / writing / planning`을 순환 표시
-- Skills: 중립 배경과 서로 다른 아이콘 색상
 - 기술 로고 영역: 중립 배경·테두리와 기본 본문색
 - 연락처 영역: 페이지와 이어지는 배경, 피치·코랄 버튼
 - GooeyNav: 민트 선택 표시와 연두·피치·코랄 물방울
@@ -112,7 +111,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 - 페이지 기본 메타데이터: `src/components/MainHead.astro`
 - 프로젝트: `src/content/work/`의 Markdown 파일
 
-프로젝트 데이터, 홈의 Skills에는 Astro 포트폴리오 템플릿의 예시가 남아 있습니다. 공개 전에 실제 이력과 프로젝트로 교체하세요.
+프로젝트 데이터에는 Astro 포트폴리오 템플릿의 예시가 남아 있습니다. 공개 전에 실제 이력과 프로젝트로 교체하세요.
 
 ## GitHub Pages 배포
 

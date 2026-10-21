@@ -10,7 +10,6 @@ import HeroParticles from '../components/HeroParticles.jsx';
 import Icon from '../components/Icon.astro';
 import TextType from '../components/react-bits/TextType.jsx';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
-import Skills from '../components/Skills.astro';
 import TechLogoLoop from '../components/TechLogoLoop.jsx';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -61,8 +60,6 @@ const projects = (await getCollection('work'))
 					src="/favicon.svg"
 				/>
 			</header>
-
-			<Skills />
 		</div>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
