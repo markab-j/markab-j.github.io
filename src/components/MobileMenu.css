@@ -1,0 +1,56 @@
+.mobile-navigation .staggered-menu-wrapper.fixed-wrapper {
+	height: 100dvh;
+}
+
+.mobile-navigation .staggered-menu-header {
+	padding: 1.5rem;
+	background: var(--gray-999_40);
+	backdrop-filter: blur(12px);
+}
+
+.mobile-navigation .sm-logo {
+	gap: 0.5rem;
+	color: var(--gray-0);
+	text-decoration: none;
+}
+
+.mobile-navigation .sm-logo-img {
+	filter: none;
+}
+
+.mobile-navigation .sm-toggle {
+	min-height: 2rem;
+	font: inherit;
+}
+
+.mobile-navigation .sm-toggle:focus-visible {
+	outline-color: var(--link-color);
+}
+
+.mobile-navigation .staggered-menu-panel {
+	background: var(--gray-999);
+	padding: 6rem 1.5rem 2rem;
+}
+
+.mobile-navigation .sm-panel-item,
+.mobile-navigation .sm-socials-link {
+	color: var(--gray-100);
+}
+
+.mobile-navigation .sm-panel-item {
+	font-size: clamp(2rem, 10vw, 3.5rem);
+}
+
+.mobile-navigation .sm-panel-list[data-numbering] .sm-panel-item::after {
+	right: 1.25rem;
+}
+
+.mobile-navigation .sm-panel-item[aria-current='page'],
+.mobile-navigation .sm-panel-item:hover,
+.mobile-navigation .sm-socials-link:hover {
+	color: var(--link-color);
+}
+
+.mobile-navigation .staggered-menu-panel[aria-hidden='true'] {
+	pointer-events: none;
+}

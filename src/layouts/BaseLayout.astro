@@ -2,10 +2,12 @@
 // Learn about using Astro layouts:
 // https://docs.astro.build/en/basics/layouts/
 
+import { ClientRouter } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 // Component Imports
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
+import ClickSpark from '../components/react-bits/ClickSpark.jsx';
 
 interface Props {
 	title?: string | undefined;
@@ -15,11 +17,25 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" transition:animate="none">
 	<head>
 		<MainHead title={title} description={description} />
+		<ClientRouter />
 	</head>
 	<body>
+		<ClickSpark
+			client:load
+			transition:persist="click-spark"
+			transition:persist-props
+			captureDocument
+			style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 10000 }}
+			sparkColor="#9CDBD9"
+			shape="star"
+			sparkCount={6}
+			sparkSize={16}
+			sparkRadius={36}
+			duration={700}
+		/>
 		<div class="stack backgrounds">
 			<Nav />
 			<slot />

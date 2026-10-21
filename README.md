@@ -89,6 +89,8 @@ import StarBorder from '../components/react-bits/StarBorder';
 
 컴포넌트 CSS에서는 `var(--brand-200)` 등 기존 디자인 토큰을 사용할 수 있습니다. JavaScript에서 계산하는 색상이나 WebGL 색상에는 컴포넌트가 지원하는 실제 색상값을 전달하세요. 홈의 **Technologies** 섹션에는 첨부된 JavaScript + CSS 버전의 LogoLoop를 적용했습니다. 원본 소스는 `src/components/react-bits/LogoLoop.jsx`와 `LogoLoop.css`에 있으며, 표시할 기술 로고와 속도는 `src/components/TechLogoLoop.jsx`에서 수정합니다. 아이콘은 `react-icons`를 사용합니다. 화면에 보이면 실행되며, 마우스 호버·키보드 포커스 시 일시정지하고 시스템의 모션 줄이기 설정을 따릅니다.
 
+데스크톱 메뉴에는 React Bits의 GooeyNav를, `50em` 미만의 모바일 화면에서는 GSAP 기반 StaggeredMenu를 사용합니다. 모바일 메뉴의 링크·소셜·테마 버튼과 민트 색상은 `src/components/Nav.astro`에서 연결하고, 사이트용 스타일은 `src/components/MobileMenu.css`에서 조정합니다. `src/components/SiteGooeyNav.jsx`에서 현재 경로·테마·디자인 토큰을 연결하며, 메뉴 링크는 `src/components/Nav.astro`에서 수정합니다. 메뉴와 클릭 효과는 내부 페이지 이동 중에도 유지됩니다.
+
 공식 문서: [React Bits 설치](https://reactbits.dev/get-started/installation) · [Astro React 통합](https://docs.astro.build/en/guides/integrations-guide/react/)
 
 ## 콘텐츠 수정
