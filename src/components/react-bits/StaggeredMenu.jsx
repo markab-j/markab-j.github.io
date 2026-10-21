@@ -420,7 +420,7 @@ export const StaggeredMenu = ({
       <header className="staggered-menu-header" aria-label="Main navigation header">
         <a className="sm-logo" href="/" aria-label={logoAlt}>
           <img
-            src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
+            src={logoUrl || '/favicon.svg'}
             alt=""
             className="sm-logo-img"
             draggable={false}

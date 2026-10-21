@@ -31,6 +31,7 @@ bun run dev --background
 ```text
 .github/workflows/deploy.yml  GitHub Pages 빌드·배포
 public/favicon.svg           제공된 markab-j SVG 아이콘
+public/favicon.ico           같은 로고의 다중 해상도 ICO 아이콘
 public/CNAME                 커스텀 도메인
 src/components/              내비게이션, 연락처, 푸터 등
 src/content/work/            프로젝트 Markdown 콘텐츠
@@ -109,7 +110,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 - 소셜 프로필: `src/components/Nav.astro`, `src/components/Footer.astro`
 - 이메일: `src/components/ContactCTA.astro`, `src/pages/about.astro`
 - 페이지 기본 메타데이터: `src/components/MainHead.astro`
-- 프로젝트: `src/content/work/`의 Markdown 파일
+- 프로젝트: `src/content/work/`의 Markdown 파일 (`img`는 선택 항목이며 생략하면 제목·설명 카드로 표시)
 
 프로젝트 데이터에는 Astro 포트폴리오 템플릿의 예시가 남아 있습니다. 공개 전에 실제 이력과 프로젝트로 교체하세요.
 
