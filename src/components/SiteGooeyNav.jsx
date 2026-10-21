@@ -58,7 +58,7 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 			stars={1}
 			trailLength={0.3}
 			thickness={1}
-			radius={12}
+			radius={999}
 			glow={0.7}
 			hover="none"
 			sparkle
@@ -74,6 +74,7 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 				activeIndex={activeIndex}
 				onChange={setActiveIndex}
 				{...navAppearance}
+				size="lg"
 				frame={false}
 				style={{ '--gn-ink': 'var(--gray-100)', '--gn-muted': 'var(--gray-300)' }}
 			/>

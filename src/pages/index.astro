@@ -134,10 +134,18 @@ const projects = (await getCollection('work'))
 		mask-image: linear-gradient(to bottom, transparent, black 10%, black 80%, transparent);
 	}
 
+	.hero :global(.title) {
+		font-weight: 750;
+	}
+
+	.hero :global(.tagline) {
+		font-weight: 500;
+	}
+
 	.interests {
 		font-family: var(--font-brand);
 		font-size: var(--text-lg);
-		font-weight: 500;
+		font-weight: 600;
 	}
 
 	.interests :global(.text-type) {
