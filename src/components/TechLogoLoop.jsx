@@ -6,7 +6,6 @@ const logos = [
 	{ node: <SiAstro />, title: 'Astro', href: 'https://astro.build/' },
 	{ node: <SiReact />, title: 'React', href: 'https://react.dev/' },
 	{ node: <SiSvelte />, title: 'Svelte', href: 'https://svelte.dev/' },
-	{ node: <SiSvelte />, title: 'SvelteKit', href: 'https://svelte.dev/docs/kit' },
 	{ node: <SiJavascript />, title: 'JavaScript', href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
 	{ node: <SiTypescript />, title: 'TypeScript', href: 'https://www.typescriptlang.org/' },
 	{ node: <SiTauri />, title: 'Tauri', href: 'https://tauri.app/' },
