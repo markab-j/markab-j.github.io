@@ -87,7 +87,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 
 지시어가 없으면 정적 HTML만 렌더링되므로 상호작용과 애니메이션이 실행되지 않습니다. 함수 형태의 이벤트 핸들러가 필요하면 `.tsx` 래퍼 안에서 정의하세요. Astro에서 전달하는 props는 직렬화 가능한 값으로 유지합니다.
 
-컴포넌트 CSS에서는 `var(--brand-200)` 등 기존 디자인 토큰을 사용할 수 있습니다. JavaScript에서 계산하는 색상이나 WebGL 색상에는 컴포넌트가 지원하는 실제 색상값을 전달하세요. 특정 React Bits 컴포넌트와 부가 애니메이션 패키지는 아직 추가하지 않았습니다.
+컴포넌트 CSS에서는 `var(--brand-200)` 등 기존 디자인 토큰을 사용할 수 있습니다. JavaScript에서 계산하는 색상이나 WebGL 색상에는 컴포넌트가 지원하는 실제 색상값을 전달하세요. 홈의 **Built with** 섹션에는 첨부된 JavaScript + CSS 버전의 LogoLoop를 적용했습니다. 원본 소스는 `src/components/react-bits/LogoLoop.jsx`와 `LogoLoop.css`에 있으며, 표시할 기술 로고와 속도는 `src/components/TechLogoLoop.jsx`에서 수정합니다. 아이콘은 `react-icons`를 사용합니다. 화면에 보이면 실행되며, 마우스 호버·키보드 포커스 시 일시정지하고 시스템의 모션 줄이기 설정을 따릅니다.
 
 공식 문서: [React Bits 설치](https://reactbits.dev/get-started/installation) · [Astro React 통합](https://docs.astro.build/en/guides/integrations-guide/react/)
 
@@ -100,7 +100,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 - 페이지 기본 메타데이터: `src/components/MainHead.astro`
 - 프로젝트: `src/content/work/`의 Markdown 파일
 
-프로젝트 데이터, 홈의 역할·Skills·Mentions에는 Astro 포트폴리오 템플릿의 예시가 남아 있습니다. 공개 전에 실제 이력과 프로젝트로 교체하세요.
+프로젝트 데이터, 홈의 역할·Skills에는 Astro 포트폴리오 템플릿의 예시가 남아 있습니다. 공개 전에 실제 이력과 프로젝트로 교체하세요.
 
 ## GitHub Pages 배포
 
