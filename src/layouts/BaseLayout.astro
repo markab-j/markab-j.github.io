@@ -29,7 +29,7 @@ const { title, description } = Astro.props;
 			transition:persist-props
 			captureDocument
 			style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 10000 }}
-			sparkColor="#9CDBD9"
+			sparkColor={['--color-mint', '--color-lime', '--color-peach', '--color-coral']}
 			shape="star"
 			sparkCount={6}
 			sparkSize={16}
@@ -58,20 +58,12 @@ const { title, description } = Astro.props;
 		</script>
 
 		<style>
-			:root {
-				--bg-scale: 1;
-				--bg-gradient-size: 100%;
-				--bg-blend-mode: normal;
-				--bg-image-subtle-1: radial-gradient(ellipse at center, var(--background-glow), transparent 70%);
-				--bg-image-subtle-2: var(--bg-image-subtle-1);
-			}
-
 			.backgrounds {
 				min-height: 100vh;
 				isolation: isolate;
 				background:
-					radial-gradient(ellipse 80% 45rem at 80% 0%, var(--background-glow), transparent),
-					radial-gradient(ellipse 70% 35rem at 20% 100%, var(--background-glow), transparent),
+					radial-gradient(ellipse 65% 40rem at 5% 0%, var(--glow-peach), transparent),
+					radial-gradient(ellipse 65% 45rem at 95% 5%, var(--glow-mint), transparent),
 					var(--gray-999);
 			}
 

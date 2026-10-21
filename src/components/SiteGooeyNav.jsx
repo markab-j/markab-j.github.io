@@ -6,6 +6,7 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 	const [appearance, setAppearance] = useState({
 		theme: 'light',
 		color: '#9CDBD9',
+		colors: ['#DCEDC1', '#FFD3B6', '#FFAAA5'],
 		activeTextColor: '#123735',
 	});
 
@@ -22,8 +23,11 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 			const tokens = getComputedStyle(root);
 			setAppearance({
 				theme: root.classList.contains('theme-dark') ? 'dark' : 'light',
-				color: tokens.getPropertyValue('--brand-200').trim(),
-				activeTextColor: tokens.getPropertyValue('--brand-900').trim(),
+				color: tokens.getPropertyValue('--color-mint').trim(),
+				colors: ['--color-lime', '--color-peach', '--color-coral'].map(token =>
+					tokens.getPropertyValue(token).trim(),
+				),
+				activeTextColor: tokens.getPropertyValue('--text-on-pastel').trim(),
 			});
 		};
 		updatePage();
@@ -44,8 +48,8 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 			onChange={setActiveIndex}
 			{...appearance}
 			style={{
-				'--gn-frame': 'var(--gray-999_40)',
-				'--gn-frame-edge': 'var(--gray-800)',
+				'--gn-frame': 'var(--surface-lime)',
+				'--gn-frame-edge': 'var(--border-accent)',
 				'--gn-frame-highlight': 'var(--gray-999_40)',
 				'--gn-frame-shadow': 'var(--shadow-md)',
 				'--gn-ink': 'var(--gray-100)',

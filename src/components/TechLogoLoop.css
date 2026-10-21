@@ -2,7 +2,7 @@
 	min-width: 0;
 	padding: 2rem 0;
 	border-block: 1px solid var(--gray-800);
-	color: var(--link-color);
+	color: var(--gray-200);
 }
 
 .tech-logo-loop .logoloop {

@@ -269,7 +269,14 @@ const ClickSpark = forwardRef(
       };
 
       const spawn = (clientX, clientY) => {
-        const s = settingsRef.current;
+        // Resolve CSS token names at click time so theme changes are reflected.
+        const tokens = getComputedStyle(root);
+        const s = {
+          ...settingsRef.current,
+          colors: settingsRef.current.colors.map(color =>
+            color.startsWith('--') ? tokens.getPropertyValue(color).trim() : color
+          )
+        };
         if (s.disabled) return;
         const rect = root.getBoundingClientRect();
         const offset = Math.floor(Math.random() * s.colors.length);

@@ -1,4 +1,11 @@
-<div class="pill">
+---
+interface Props {
+	tone?: 'mint' | 'lime' | 'peach' | 'coral';
+}
+const { tone = 'mint' } = Astro.props;
+---
+
+<div class="pill" style={{ '--pill-color': `var(--color-${tone})` }}>
 	<slot />
 </div>
 
@@ -8,8 +15,8 @@
 		padding: 0.5rem 1rem;
 		gap: 0.5rem;
 		color: var(--accent-text-over);
-		border: 1px solid var(--accent-regular);
-		background-color: var(--accent-regular);
+		border: 1px solid var(--pill-color);
+		background-color: var(--pill-color);
 		border-radius: 999rem;
 		font-size: var(--text-md);
 		line-height: 1.35;

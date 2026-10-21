@@ -3,7 +3,7 @@ import Particles from './react-bits/Particles';
 
 export default function HeroParticles() {
 	const [appearance, setAppearance] = useState({
-		particleColors: ['#9CDBD9', '#74C5C2', '#318783'],
+		particleColors: ['#9CDBD9', '#DCEDC1', '#FFD3B6', '#FFAAA5'],
 		lightMode: true,
 		paused: false,
 	});
@@ -14,7 +14,7 @@ export default function HeroParticles() {
 		const updateAppearance = () => {
 			const tokens = getComputedStyle(root);
 			setAppearance({
-				particleColors: ['--brand-200', '--brand-300', '--brand-500'].map(token =>
+				particleColors: ['--color-mint', '--color-lime', '--color-peach', '--color-coral'].map(token =>
 					tokens.getPropertyValue(token).trim(),
 				),
 				lightMode: !root.classList.contains('theme-dark'),

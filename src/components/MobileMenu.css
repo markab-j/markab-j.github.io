@@ -24,11 +24,11 @@
 }
 
 .mobile-navigation .sm-toggle:focus-visible {
-	outline-color: var(--link-color);
+	outline-color: var(--ink-coral);
 }
 
 .mobile-navigation .staggered-menu-panel {
-	background: var(--gray-999);
+	background: linear-gradient(160deg, var(--gray-999) 40%, var(--surface-peach));
 	padding: 6rem 1.5rem 2rem;
 }
 
@@ -48,7 +48,7 @@
 .mobile-navigation .sm-panel-item[aria-current='page'],
 .mobile-navigation .sm-panel-item:hover,
 .mobile-navigation .sm-socials-link:hover {
-	color: var(--link-color);
+	color: var(--ink-coral);
 }
 
 .mobile-navigation .staggered-menu-panel[aria-hidden='true'] {

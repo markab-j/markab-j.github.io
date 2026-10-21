@@ -9,6 +9,26 @@
 	--brand-700: #205e5b;
 	--brand-900: #123735;
 
+
+	/* Pastel palette: retain markab-j mint in place of Color Hunt's mint. */
+	--color-mint: var(--brand-200);
+	--color-lime: #dcedc1;
+	--color-peach: #ffd3b6;
+	--color-coral: #ffaaa5;
+	--ink-lime: #43512d;
+	--ink-peach: #79482d;
+	--ink-coral: #853e3a;
+	--text-on-pastel: var(--brand-900);
+	--surface-mint: color-mix(in srgb, var(--color-mint) 22%, var(--gray-999));
+	--surface-lime: color-mix(in srgb, var(--color-lime) 35%, var(--gray-999));
+	--surface-peach: color-mix(in srgb, var(--color-peach) 35%, var(--gray-999));
+	--surface-coral: color-mix(in srgb, var(--color-coral) 25%, var(--gray-999));
+	--border-accent: color-mix(in srgb, var(--color-coral) 45%, var(--gray-700));
+	--glow-mint: color-mix(in srgb, var(--color-mint) 45%, transparent);
+	--glow-lime: color-mix(in srgb, var(--color-lime) 65%, transparent);
+	--glow-peach: color-mix(in srgb, var(--color-peach) 60%, transparent);
+	--glow-coral: color-mix(in srgb, var(--color-coral) 40%, transparent);
+
 	/* Neutral colors */
 	--gray-0: #0b1717;
 	--gray-50: #142626;
@@ -30,24 +50,24 @@
 	--accent-dark: var(--brand-700);
 	--accent-overlay: rgb(156 219 217 / 33%);
 	--accent-subtle-overlay: var(--accent-overlay);
-	--accent-text-over: var(--brand-900);
+	--accent-text-over: var(--text-on-pastel);
 
 	--link-color: var(--brand-700);
 
 	/* Gradients */
-	--gradient-stop-1: var(--accent-light);
-	--gradient-stop-2: var(--accent-regular);
-	--gradient-stop-3: var(--accent-dark);
-	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 150%);
+	--gradient-stop-1: var(--color-coral);
+	--gradient-stop-2: var(--color-peach);
+	--gradient-stop-3: var(--color-mint);
+	--gradient-subtle: linear-gradient(150deg, var(--surface-peach), var(--gray-999));
 	--gradient-accent: linear-gradient(
 		150deg,
 		var(--gradient-stop-1),
 		var(--gradient-stop-2),
 		var(--gradient-stop-3)
 	);
-	--gradient-action: linear-gradient(150deg, var(--brand-100), var(--brand-200), var(--brand-300));
-	--background-glow: rgb(156 219 217 / 35%);
-	--gradient-stroke: linear-gradient(180deg, var(--gray-900), var(--gray-700));
+	--gradient-action: linear-gradient(120deg, var(--color-peach), var(--color-coral));
+	--background-glow: var(--glow-mint);
+	--gradient-stroke: linear-gradient(180deg, var(--surface-peach), var(--border-accent));
 
 	/* Shadows */
 	--shadow-sm:
@@ -102,13 +122,23 @@
 	--accent-dark: var(--brand-200);
 	--accent-overlay: rgb(156 219 217 / 33%);
 	--accent-subtle-overlay: rgb(49 135 131 / 33%);
-	--accent-text-over: var(--brand-900);
+	--accent-text-over: var(--text-on-pastel);
 
 	--link-color: var(--accent-dark);
 
-	--gradient-stop-1: var(--brand-500);
-	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 81%);
-	--background-glow: rgb(49 135 131 / 22%);
+	--ink-lime: var(--color-lime);
+	--ink-peach: var(--color-peach);
+	--ink-coral: var(--color-coral);
+	--surface-mint: color-mix(in srgb, var(--color-mint) 10%, var(--gray-999));
+	--surface-lime: color-mix(in srgb, var(--color-lime) 10%, var(--gray-999));
+	--surface-peach: color-mix(in srgb, var(--color-peach) 12%, var(--gray-999));
+	--surface-coral: color-mix(in srgb, var(--color-coral) 12%, var(--gray-999));
+	--glow-mint: color-mix(in srgb, var(--color-mint) 12%, transparent);
+	--glow-lime: color-mix(in srgb, var(--color-lime) 10%, transparent);
+	--glow-peach: color-mix(in srgb, var(--color-peach) 12%, transparent);
+	--glow-coral: color-mix(in srgb, var(--color-coral) 14%, transparent);
+	--gradient-subtle: linear-gradient(150deg, var(--surface-peach), var(--gray-999));
+	--background-glow: var(--glow-mint);
 	--gradient-stroke: linear-gradient(180deg, var(--gray-600), var(--gray-800));
 
 	--shadow-sm:
