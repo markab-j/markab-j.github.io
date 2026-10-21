@@ -27,8 +27,8 @@ const projects = (await getCollection('work'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hello, my name is Jeanine White"
-					tagline="I am a Creative Developer who is currently based in Portland, Oregon."
+					title="Hello, my name is markab-j"
+					tagline="Welcome to my personal space on the web."
 					align="start"
 				>
 					<div class="roles">
@@ -45,10 +45,10 @@ const projects = (await getCollection('work'))
 				</Hero>
 
 				<img
-					alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
+					alt="markab-j logo"
 					width="480"
-					height="620"
-					src="/assets/portrait.jpg"
+					height="490"
+					src="/favicon.svg"
 				/>
 			</header>
 
@@ -119,7 +119,7 @@ const projects = (await getCollection('work'))
 
 	.hero img {
 		aspect-ratio: 5 / 4;
-		object-fit: cover;
+		object-fit: contain;
 		object-position: top;
 		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
@@ -142,7 +142,7 @@ const projects = (await getCollection('work'))
 		.hero img {
 			aspect-ratio: 3 / 4;
 			border-radius: 4.5rem;
-			object-fit: cover;
+			object-fit: contain;
 		}
 	}
 
