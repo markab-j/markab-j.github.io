@@ -4,13 +4,13 @@ import { getCollection } from 'astro:content';
 import CallToAction from '../components/CallToAction.astro';
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
-import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import HeroParticles from '../components/HeroParticles.jsx';
 import Icon from '../components/Icon.astro';
 import TextType from '../components/react-bits/TextType.jsx';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
 import TechLogoLoop from '../components/TechLogoLoop.jsx';
+import Masonry from '../components/react-bits/Masonry.jsx';
+import '../styles/work-masonry.css';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -66,17 +66,29 @@ const projects = (await getCollection('work'))
 			<section class="section with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Selected Work</h3>
-					<p>Take a look below at some of my featured work for clients from the past few years.</p>
+					<p>A selection of my projects.</p>
 				</header>
 
-				<div class="gallery">
-					<Grid variant="offset">
-						{projects.map((project) => (
-							<li>
-								<PortfolioPreview project={project} />
-							</li>
-						))}
-					</Grid>
+				<div class:list={['gallery', 'work-gallery', { 'single-project': projects.length === 1 }]}>
+					<Masonry
+						client:visible
+						items={projects.map(({ id, data }) => ({
+							id,
+							title: data.title,
+							description: data.description,
+							url: `/work/${id}/`,
+							...(data.img ? { img: data.img, alt: data.img_alt } : { width: 600, height: 400 }),
+						}))}
+						columns={projects.length === 1 ? 1 : 'auto'}
+						columnWidth={360}
+						gap={24}
+						radius={24}
+						captions="always"
+						hoverEffect="lift"
+						lightbox={false}
+						draggable={false}
+						className="work-masonry"
+					/>
 				</div>
 
 				<div class="cta">

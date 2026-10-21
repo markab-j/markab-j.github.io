@@ -103,6 +103,20 @@ import StarBorder from '../components/react-bits/StarBorder';
 
 공식 문서: [React Bits 설치](https://reactbits.dev/get-started/installation) · [Astro React 통합](https://docs.astro.build/en/guides/integrations-guide/react/)
 
+## 폰트
+
+본문·제목·메뉴는 **Pretendard Variable v1.3.9**로 통일합니다. 외부 CDN 대신 `public/fonts/pretendard/v1.3.9/`에서 웹폰트를 직접 서빙합니다. 기존 Google Fonts 요청은 제거했습니다.
+
+- 공식 가변 다이나믹 서브셋 CSS와 WOFF2 92개를 포함합니다. 글꼴 파일의 총 크기는 약 2.82 MiB지만, 브라우저는 `unicode-range`에 따라 페이지에 필요한 문자 파일만 요청합니다.
+- 가변 굵기 `45–920`을 지원하므로 굵기별 파일을 따로 추가하지 않습니다.
+- `font-display: swap`으로 폰트 로딩 중에도 시스템 글꼴로 텍스트를 표시합니다.
+- `--font-body`와 `--font-brand`가 같은 폰트 토큰을 사용합니다.
+- SIL Open Font License 1.1과 저작권 고지를 `public/fonts/pretendard/v1.3.9/LICENSE.txt` 및 원본 CSS에 보존했습니다.
+
+이 구성은 GitHub Pages에서 다른 정적 파일과 함께 배포되며, 별도의 폰트 CDN 연결이나 운영체제 폰트 설치가 필요하지 않습니다.
+
+출처: [제작자 소개](https://cactus.tistory.com/306) · [Pretendard 공식 저장소](https://github.com/orioncactus/pretendard)
+
 ## 콘텐츠 수정
 
 - 홈: `src/pages/index.astro`
@@ -112,7 +126,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 - 페이지 기본 메타데이터: `src/components/MainHead.astro`
 - 프로젝트: `src/content/work/`의 Markdown 파일 (`img`는 선택 항목이며 생략하면 제목·설명 카드로 표시)
 
-프로젝트 데이터에는 Astro 포트폴리오 템플릿의 예시가 남아 있습니다. 공개 전에 실제 이력과 프로젝트로 교체하세요.
+현재 프로젝트는 **Idlerama** 하나이며, 소개는 “자세한 내용은 준비 중.”으로 표시합니다. 메인 페이지는 React Bits Masonry를 사용하고, 카드가 하나일 때 가운데 정렬합니다. 사진이 없어도 제목·설명·상세 페이지 링크가 서버에서 렌더링됩니다. 이미지 확대와 드래그 재정렬은 사용하지 않습니다.
 
 ## GitHub Pages 배포
 
