@@ -273,16 +273,3 @@
   top: calc(50% - 22px);
   right: 16px;
 }
-
-
-/* Keep projects readable before hydration and when JavaScript is disabled. */
-.masonry:not([data-laid-out]) {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-  gap: 1.5rem;
-}
-
-.masonry:not([data-laid-out]) .masonry__item {
-  position: relative;
-  min-height: 16rem;
-}

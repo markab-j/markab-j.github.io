@@ -7,32 +7,3 @@
 	max-width: 40rem;
 	margin-inline: auto;
 }
-
-.work-masonry .masonry__media {
-	border: 1px solid var(--gray-800);
-	background: var(--gray-999_40);
-	box-shadow: var(--shadow-sm);
-}
-
-.work-masonry [data-no-image] .masonry__caption {
-	position: relative;
-	justify-content: center;
-	height: 100%;
-	gap: 0.75rem;
-	padding: 1.5rem;
-	color: var(--gray-200);
-	background: none;
-}
-
-.work-masonry .masonry__title {
-	font-family: var(--font-brand);
-	font-size: var(--text-xl);
-	color: var(--gray-100);
-}
-
-.work-masonry .masonry__text {
-	font-size: var(--text-base);
-	line-height: 1.5;
-	color: var(--gray-300);
-	opacity: 1;
-}

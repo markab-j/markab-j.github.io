@@ -133,7 +133,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 ## 콘텐츠와 상호작용 유지 조건
 
 - Work 스키마는 `src/content.config.ts`가 기준입니다. `img`와 `img_alt`는 선택 항목입니다.
-- 홈은 최신 프로젝트 4개를 Masonry로 표시합니다. 카드가 하나면 가운데 정렬하고, 사진 없이도 제목·설명·링크를 서버 렌더링합니다. 이미지 확대와 드래그 재정렬은 사용하지 않습니다.
+- 홈은 최신 프로젝트 4개를 제공받은 TypeScript + CSS 버전의 React Bits `Masonry.tsx`로 표시합니다. 카드가 하나면 가운데 정렬합니다. 원본 디자인과 애니메이션을 유지하고, 카드별 제목·이미지·이동 주소는 `items` props로 전달합니다. `lightbox={false}`로 카드 전체를 클릭하면 해당 Work 상세 페이지로 같은 탭에서 이동합니다. 추가 이동 버튼, 커스텀 카드 렌더러와 Masonry 디자인 덮어쓰기를 넣지 않습니다. 원본은 클라이언트에서 카드를 생성하므로 홈에서 `client:load`로 실행합니다. 원본의 드래그 재정렬을 기본값으로 유지합니다. 드래그 직후에는 링크 이동을 억제하는 원본 동작을 유지합니다. Work 목록은 기존 `PortfolioPreview.astro`를 사용합니다.
 - 현재 Work 콘텐츠는 Idlerama이며 소개는 “자세한 내용은 준비 중.”입니다. 실제 내용은 Markdown을 기준으로 확인합니다.
 - 히어로 제목은 `Hero.astro`의 `title` 슬롯으로 이름만 강조합니다. 홈의 `markab-j` 배경은 `--color-mint`, 글자는 `--text-on-pastel`입니다.
 - 데스크톱 nav는 큰 크기의 GooeyNav와 캡슐 형태 StarBorder를 사용합니다. 별 효과 경로와 배경 모서리를 함께 유지합니다.

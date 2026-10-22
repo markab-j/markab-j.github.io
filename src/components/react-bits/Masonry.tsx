@@ -1,10 +1,118 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent
+} from 'react';
 import { createPortal } from 'react-dom';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ArrowLeft01Icon, ArrowRight01Icon, ArrowUpRight01Icon, Cancel01Icon } from '@hugeicons/core-free-icons';
 import './Masonry.css';
+
+export interface MasonryItem {
+  id: string | number;
+  img: string;
+  width?: number;
+  height?: number;
+  title?: string;
+  description?: string;
+  alt?: string;
+  url?: string;
+  span?: number;
+}
+
+export interface MasonryProps {
+  items?: MasonryItem[];
+  columns?: 'auto' | number;
+  columnWidth?: number;
+  gap?: number;
+  radius?: number;
+  animateFrom?: 'bottom' | 'top' | 'left' | 'right' | 'center' | 'random' | 'none';
+  stagger?: number;
+  duration?: number;
+  bounce?: number;
+  blurToFocus?: boolean;
+  revealOnScroll?: boolean;
+  hoverEffect?: 'zoom' | 'lift' | 'tilt' | 'none';
+  focusOnHover?: boolean;
+  captions?: 'hover' | 'always' | 'none';
+  parallax?: number;
+  lightbox?: boolean;
+  draggable?: boolean;
+  onItemClick?: (item: MasonryItem, index: number, event: ReactMouseEvent<HTMLElement>) => void;
+  onReorder?: (items: MasonryItem[]) => void;
+  className?: string;
+  style?: CSSProperties;
+}
+
+type Measured = Record<string, number>;
+
+interface Grid {
+  count: number;
+  size: number;
+}
+
+interface Rect {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+interface Tile extends Rect {
+  item: MasonryItem;
+  id: string;
+}
+
+interface Layout {
+  tiles: Tile[];
+  height: number;
+}
+
+interface Spring {
+  x: number;
+  y: number;
+  s: number;
+  vx: number;
+  vy: number;
+  vs: number;
+  tx: number;
+  ty: number;
+  w: number;
+  h: number;
+  shown: boolean;
+  dragging: boolean;
+  blur: boolean;
+  reveal: number;
+  start: number;
+}
+
+interface Ghost {
+  id: string;
+  item: MasonryItem;
+  x: number;
+  y: number;
+  s: number;
+  w: number;
+  h: number;
+}
+
+interface Drag {
+  id: string;
+  pointerId: number;
+  startX: number;
+  startY: number;
+  offsetX: number;
+  offsetY: number;
+  active: boolean;
+  moved: boolean;
+}
 
 const ROOT = 'masonry';
 const ITEM = 'masonry__item';
@@ -33,11 +141,11 @@ const EASE = 'cubic-bezier(0.2, 0.9, 0.2, 1)';
 
 const useIsoLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
-const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
-const keyOf = item => String(item.id);
+const keyOf = (item: MasonryItem) => String(item.id);
 
-const aspectOf = (item, measured) => {
+const aspectOf = (item: MasonryItem, measured: Measured) => {
   const width = item.width ?? 0;
   const height = item.height ?? 0;
   if (width > 0 && height > 0) return height / width;
@@ -46,9 +154,9 @@ const aspectOf = (item, measured) => {
   return 1;
 };
 
-const needsMeasure = item => Boolean(item.img) && !((item.height ?? 0) > 0);
+const needsMeasure = (item: MasonryItem) => !((item.height ?? 0) > 0);
 
-const gridOf = (width, columns, columnWidth, gap) => {
+const gridOf = (width: number, columns: 'auto' | number, columnWidth: number, gap: number): Grid => {
   const fixed = Number(columns);
   const count =
     columns !== 'auto' && fixed > 0
@@ -57,7 +165,14 @@ const gridOf = (width, columns, columnWidth, gap) => {
   return { count, size: Math.max(1, (width - gap * (count - 1)) / count) };
 };
 
-const place = (heights, item, grid, gap, measured, commit) => {
+const place = (
+  heights: number[],
+  item: MasonryItem,
+  grid: Grid,
+  gap: number,
+  measured: Measured,
+  commit: boolean
+): Rect => {
   const { count, size } = grid;
   const span = Math.min(count, Math.max(1, Math.round(item.span || 1)));
   let column = 0;
@@ -76,7 +191,7 @@ const place = (heights, item, grid, gap, measured, commit) => {
   return { x: Math.round(column * (size + gap)), y: Math.round(top), w, h };
 };
 
-const scrollerOf = element => {
+const scrollerOf = (element: HTMLElement | null): HTMLElement | null => {
   let node = element?.parentElement;
   while (node && node !== document.body && node !== document.documentElement) {
     const overflow = getComputedStyle(node).overflowY;
@@ -91,17 +206,32 @@ const scrollerOf = element => {
   return null;
 };
 
-const layoutOf = (list, width, columns, columnWidth, gap, measured) => {
+const layoutOf = (
+  list: MasonryItem[],
+  width: number,
+  columns: 'auto' | number,
+  columnWidth: number,
+  gap: number,
+  measured: Measured
+): Layout => {
   const grid = gridOf(width, columns, columnWidth, gap);
   const heights = new Array(grid.count).fill(0);
   const tiles = list.map(item => ({ item, id: keyOf(item), ...place(heights, item, grid, gap, measured, true) }));
   return { tiles, height: Math.max(0, Math.max(...heights) - gap) };
 };
 
-const slotsFor = (others, dragged, width, columns, columnWidth, gap, measured) => {
+const slotsFor = (
+  others: MasonryItem[],
+  dragged: MasonryItem,
+  width: number,
+  columns: 'auto' | number,
+  columnWidth: number,
+  gap: number,
+  measured: Measured
+) => {
   const grid = gridOf(width, columns, columnWidth, gap);
   const heights = new Array(grid.count).fill(0);
-  const slots = [];
+  const slots: { x: number; y: number }[] = [];
   for (let i = 0; i <= others.length; i++) {
     const slot = place(heights, dragged, grid, gap, measured, false);
     slots.push({ x: slot.x + slot.w / 2, y: slot.y + slot.h / 2 });
@@ -132,27 +262,27 @@ const Masonry = ({
   onReorder,
   className = '',
   style
-}) => {
-  const rootRef = useRef(null);
-  const nodes = useRef(new Map());
-  const springs = useRef(new Map());
-  const loaded = useRef(new Set());
-  const waiting = useRef(new Set());
-  const pending = useRef(new Set());
+}: MasonryProps) => {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const nodes = useRef(new Map<string, HTMLDivElement>());
+  const springs = useRef(new Map<string, Spring>());
+  const loaded = useRef(new Set<string>());
+  const waiting = useRef(new Set<string>());
+  const pending = useRef(new Set<string>());
   const engine = useRef({ raf: 0, last: 0, flush: 0 });
-  const dragRef = useRef(null);
+  const dragRef = useRef<Drag | null>(null);
   const suppressRef = useRef(false);
-  const ghostsRef = useRef(new Map());
-  const previousRef = useRef(new Map());
-  const boxRef = useRef(null);
+  const ghostsRef = useRef(new Map<string, HTMLDivElement>());
+  const previousRef = useRef(new Map<string, { item: MasonryItem; w: number; h: number }>());
+  const boxRef = useRef<HTMLDivElement>(null);
   const tokenRef = useRef(0);
-  const lastShownRef = useRef(null);
+  const lastShownRef = useRef<string | null>(null);
   const [width, setWidth] = useState(0);
-  const [order, setOrder] = useState(null);
-  const [measured, setMeasured] = useState({});
+  const [order, setOrder] = useState<string[] | null>(null);
+  const [measured, setMeasured] = useState<Measured>({});
   const [ready, setReady] = useState(() => !items.some(needsMeasure));
-  const [ghosts, setGhosts] = useState([]);
-  const [openId, setOpenId] = useState(null);
+  const [ghosts, setGhosts] = useState<Ghost[]>([]);
+  const [openId, setOpenId] = useState<string | null>(null);
   const [closing, setClosing] = useState(false);
 
   const settings = {
@@ -179,7 +309,7 @@ const Masonry = ({
   const ordered = useMemo(() => {
     if (!order) return items;
     const byId = new Map(items.map(item => [keyOf(item), item]));
-    const list = order.filter(id => byId.has(id)).map(id => byId.get(id));
+    const list = order.filter(id => byId.has(id)).map(id => byId.get(id) as MasonryItem);
     items.forEach(item => {
       if (!order.includes(keyOf(item))) list.push(item);
     });
@@ -245,7 +375,7 @@ const Masonry = ({
   const reduced = () =>
     typeof window !== 'undefined' && (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false);
 
-  const paint = (id, spring) => {
+  const paint = (id: string, spring: Spring) => {
     const node = nodes.current.get(id);
     if (!node) return;
     node.style.transform = `translate3d(${spring.x}px, ${spring.y}px, 0) scale(${spring.s})`;
@@ -259,7 +389,7 @@ const Masonry = ({
     }
   };
 
-  const frame = now => {
+  const frame = (now: number) => {
     const state = engine.current;
     state.raf = 0;
     const s = settingsRef.current;
@@ -328,7 +458,7 @@ const Masonry = ({
   const flushReveals = () => {
     engine.current.flush = 0;
     const s = settingsRef.current;
-    const batch = [];
+    const batch: { id: string; spring: Spring }[] = [];
     pending.current.forEach(id => {
       const spring = springs.current.get(id);
       if (spring && !spring.shown) batch.push({ id, spring });
@@ -374,7 +504,7 @@ const Masonry = ({
     kick();
   };
 
-  const requestReveal = id => {
+  const requestReveal = (id: string) => {
     const spring = springs.current.get(id);
     if (!spring || spring.shown) return;
     if (!loaded.current.has(id)) {
@@ -389,7 +519,7 @@ const Masonry = ({
   const revealRef = useRef(requestReveal);
   revealRef.current = requestReveal;
 
-  const markLoaded = id => {
+  const markLoaded = (id: string) => {
     loaded.current.add(id);
     const node = nodes.current.get(id);
     node?.querySelector('img')?.setAttribute('data-loaded', '');
@@ -399,7 +529,7 @@ const Masonry = ({
   useIsoLayoutEffect(() => {
     const previous = previousRef.current;
     const live = new Set(items.map(keyOf));
-    const leaving = [];
+    const leaving: Ghost[] = [];
     previous.forEach((entry, id) => {
       if (live.has(id)) return;
       const spring = springs.current.get(id);
@@ -417,7 +547,6 @@ const Masonry = ({
     const root = rootRef.current;
     const instant = reduced();
     layout.tiles.forEach(tile => {
-      if (!tile.item.img) loaded.current.add(tile.id);
       const node = nodes.current.get(tile.id);
       let spring = springs.current.get(tile.id);
       if (!spring) {
@@ -493,7 +622,7 @@ const Masonry = ({
   }, [layout, revealOnScroll]);
 
   useEffect(() => {
-    const timers = [];
+    const timers: ReturnType<typeof setTimeout>[] = [];
     waiting.current.forEach(id => {
       timers.push(
         setTimeout(() => {
@@ -528,7 +657,7 @@ const Masonry = ({
 
   useEffect(() => {
     const strength = settingsRef.current.parallax;
-    const layers = () => [...nodes.current.values()].map(node => node.querySelector('[data-parallax]'));
+    const layers = () => [...nodes.current.values()].map(node => node.querySelector<HTMLElement>('[data-parallax]'));
     if (!strength || !layout) {
       layers().forEach(layer => {
         if (layer) layer.style.transform = '';
@@ -544,7 +673,7 @@ const Masonry = ({
       const bottom = Math.min(frame.bottom, window.innerHeight);
       const center = (top + bottom) / 2;
       nodes.current.forEach(node => {
-        const layer = node.querySelector('[data-parallax]');
+        const layer = node.querySelector<HTMLElement>('[data-parallax]');
         if (!layer) return;
         const rect = node.getBoundingClientRect();
         if (rect.bottom < top - 200 || rect.top > bottom + 200) return;
@@ -574,24 +703,24 @@ const Masonry = ({
     };
   }, []);
 
-  const setDimmed = activeId => {
+  const setDimmed = (activeId: string | null) => {
     nodes.current.forEach((node, id) => {
       if (activeId && id !== activeId) node.setAttribute('data-dimmed', '');
       else node.removeAttribute('data-dimmed');
     });
   };
 
-  const onEnter = id => {
+  const onEnter = (id: string) => {
     if (settingsRef.current.focusOnHover && !dragRef.current?.active) setDimmed(id);
   };
 
-  const onLeave = event => {
+  const onLeave = (event: ReactPointerEvent<HTMLElement>) => {
     if (settingsRef.current.focusOnHover) setDimmed(null);
     event.currentTarget.style.removeProperty('--masonry-tilt-x');
     event.currentTarget.style.removeProperty('--masonry-tilt-y');
   };
 
-  const onTilt = event => {
+  const onTilt = (event: ReactPointerEvent<HTMLElement>) => {
     if (settingsRef.current.hoverEffect !== 'tilt' || dragRef.current?.active) return;
     const card = event.currentTarget;
     const rect = card.getBoundingClientRect();
@@ -621,7 +750,7 @@ const Masonry = ({
     if (drag.moved) settingsRef.current.onReorder?.(orderedRef.current);
   };
 
-  const moveDrag = event => {
+  const moveDrag = (event: PointerEvent) => {
     const drag = dragRef.current;
     const root = rootRef.current;
     if (!drag || !root || event.pointerId !== drag.pointerId) return;
@@ -670,7 +799,7 @@ const Masonry = ({
     setOrder(ids);
   };
 
-  const startDrag = (event, id) => {
+  const startDrag = (event: ReactPointerEvent<HTMLElement>, id: string) => {
     const s = settingsRef.current;
     if (!s.draggable || event.button !== 0 || event.pointerType === 'touch' || openId) return;
     const root = rootRef.current;
@@ -692,7 +821,7 @@ const Masonry = ({
     window.addEventListener('pointercancel', finishDrag);
   };
 
-  const onCardClick = (event, item, index) => {
+  const onCardClick = (event: ReactMouseEvent<HTMLElement>, item: MasonryItem, index: number) => {
     if (suppressRef.current) {
       event.preventDefault();
       return;
@@ -711,9 +840,10 @@ const Masonry = ({
   const openIndex = openId ? ordered.findIndex(item => keyOf(item) === openId) : -1;
   const openItem = openIndex >= 0 ? ordered[openIndex] : null;
 
-  const mediaRect = id => nodes.current.get(id)?.querySelector('[data-media]')?.getBoundingClientRect() ?? null;
+  const mediaRect = (id: string) =>
+    nodes.current.get(id)?.querySelector('[data-media]')?.getBoundingClientRect() ?? null;
 
-  const frameFor = item => {
+  const frameFor = (item: MasonryItem) => {
     const aspect = aspectOf(item, measured);
     const pad = window.innerWidth < 640 ? 16 : 72;
     const room = item.title || item.description || item.url ? 64 : 0;
@@ -735,8 +865,8 @@ const Masonry = ({
     tokenRef.current += 1;
     const token = tokenRef.current;
     const box = boxRef.current;
-    const image = box?.querySelector('[data-box-image]');
-    const backdrop = box?.querySelector('[data-box-backdrop]');
+    const image = box?.querySelector<HTMLElement>('[data-box-image]');
+    const backdrop = box?.querySelector<HTMLElement>('[data-box-backdrop]');
     const rect = mediaRect(openId);
     setClosing(true);
     if (!image || !rect || reduced()) {
@@ -770,7 +900,7 @@ const Masonry = ({
       .catch(() => {});
   };
 
-  const stepBox = direction => {
+  const stepBox = (direction: number) => {
     if (!openItem || closing || ordered.length < 2) return;
     const next = ordered[(openIndex + direction + ordered.length) % ordered.length];
     setOpenId(keyOf(next));
@@ -783,15 +913,15 @@ const Masonry = ({
     return () => node?.removeAttribute('data-hidden');
   }, [openId]);
 
-  const openedRef = useRef(null);
+  const openedRef = useRef<string | null>(null);
   useIsoLayoutEffect(() => {
     const box = boxRef.current;
     if (!openId || !box) {
       openedRef.current = null;
       return;
     }
-    const image = box.querySelector('[data-box-image]');
-    const backdrop = box.querySelector('[data-box-backdrop]');
+    const image = box.querySelector<HTMLElement>('[data-box-image]');
+    const backdrop = box.querySelector<HTMLElement>('[data-box-backdrop]');
     const fades = box.querySelectorAll('[data-box-fade]');
     if (!image) return;
     if (openedRef.current) {
@@ -833,17 +963,20 @@ const Masonry = ({
     if (!isOpen) return undefined;
     const previous = document.documentElement.style.overflow;
     document.documentElement.style.overflow = 'hidden';
-    boxRef.current?.querySelector('[data-box-close]')?.focus({ preventScroll: true });
+    boxRef.current?.querySelector<HTMLElement>('[data-box-close]')?.focus({ preventScroll: true });
     const map = nodes.current;
     return () => {
       document.documentElement.style.overflow = previous;
-      map.get(lastShownRef.current)?.querySelector('[data-card]')?.focus({ preventScroll: true });
+      map
+        .get(lastShownRef.current ?? '')
+        ?.querySelector<HTMLElement>('[data-card]')
+        ?.focus({ preventScroll: true });
     };
   }, [isOpen]);
 
   useEffect(() => {
     if (!openId) return undefined;
-    const onKey = event => {
+    const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeBox();
       else if (event.key === 'ArrowRight') stepBox(1);
       else if (event.key === 'ArrowLeft') stepBox(-1);
@@ -860,27 +993,26 @@ const Masonry = ({
     <div
       ref={rootRef}
       className={[ROOT, className].filter(Boolean).join(' ')}
-      style={{ '--masonry-radius': `${Math.max(0, radius)}px`, ...style }}
+      style={{ '--masonry-radius': `${Math.max(0, radius)}px`, ...style } as CSSProperties}
       data-hover={mode}
-      data-laid-out={layout ? '' : undefined}
       role="list"
     >
-      {(layout?.tiles ?? ordered.map(item => ({ item, id: keyOf(item) }))).map((tile, index) => {
+      {(layout?.tiles ?? []).map((tile, index) => {
         const { item } = tile;
         const id = tile.id;
         const label = item.title || item.alt || undefined;
         const shared = {
           className: CARD,
           'data-card': '',
-          onClick: event => onCardClick(event, item, index),
-          onPointerDown: event => startDrag(event, id),
+          onClick: (event: ReactMouseEvent<HTMLElement>) => onCardClick(event, item, index),
+          onPointerDown: (event: ReactPointerEvent<HTMLElement>) => startDrag(event, id),
           onPointerEnter: () => onEnter(id),
           onPointerLeave: onLeave,
           onPointerMove: onTilt
         };
         const content = (
           <span className={MEDIA} data-media="">
-            {item.img && <span className={PARALLAX} data-parallax="">
+            <span className={PARALLAX} data-parallax="">
               <img
                 className={IMAGE}
                 src={item.img}
@@ -894,7 +1026,7 @@ const Masonry = ({
                 onLoad={() => markLoaded(id)}
                 onError={() => markLoaded(id)}
               />
-            </span>}
+            </span>
             {captionMode !== 'none' && (item.title || item.description) && (
               <span className={CAPTION} data-mode={captionMode}>
                 {item.title && <span className={TITLE}>{item.title}</span>}
@@ -913,7 +1045,6 @@ const Masonry = ({
             className={ITEM}
             style={{ width: tile.w, height: tile.h }}
             data-id={id}
-            data-no-image={!item.img ? '' : undefined}
             role="listitem"
           >
             {!lightbox && item.url ? (
