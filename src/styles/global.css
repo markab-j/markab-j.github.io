@@ -316,3 +316,20 @@ h5 {
 		gap: 12rem;
 	}
 }
+
+/* Paired project logos follow the site's saved theme. */
+:root .project-cover img[data-theme-image] {
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	object-fit: contain;
+	padding: 12%;
+}
+
+:root img[data-theme-image='dark'],
+:root.theme-dark img[data-theme-image='light'] {
+	display: none;
+}
+
+:root.theme-dark img[data-theme-image='dark'] {
+	display: block;
+}
