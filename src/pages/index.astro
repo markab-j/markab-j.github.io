@@ -91,7 +91,7 @@ const projects = (await getCollection("work"))
 							id,
 							title: data.title,
 							description: data.description,
-							url: `/work/${id}/`,
+							url: `/work/${id}`,
 							...(data.img
 								? { img: data.img, alt: data.img_alt }
 								: { width: 600, height: 400 }),
@@ -109,7 +109,7 @@ const projects = (await getCollection("work"))
 				</div>
 
 				<div class="cta">
-					<CallToAction href="/work/">
+					<CallToAction href="/work">
 						View All
 						<Icon icon="arrow-right" size="1.2em" />
 					</CallToAction>

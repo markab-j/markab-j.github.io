@@ -15,9 +15,9 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 
 	useEffect(() => {
 		const updatePage = () => {
-			const pathname = `${window.location.pathname.replace(/\/$/, '')}/`;
+			const pathname = window.location.pathname.replace(/^\/index\.html$/, '/').replace(/(?:\.html|\/)$/, '') || '/';
 			const index = items.findIndex(({ href }) =>
-				href === '/' ? pathname === '/' : pathname.startsWith(href),
+				pathname === href || (href !== '/' && pathname.startsWith(`${href}/`)),
 			);
 			setActiveIndex(Math.max(0, index));
 		};

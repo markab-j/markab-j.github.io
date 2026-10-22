@@ -10,6 +10,9 @@ const {
 	title = 'markab-j | Personal Site',
 	description = 'The personal site of markab-j',
 } = Astro.props;
+
+const pathname = Astro.url.pathname.replace(/^\/index\.html$/, '/').replace(/(?:\.html|\/)$/, '') || '/';
+const canonicalURL = new URL(pathname, Astro.site);
 ---
 
 <meta charset="utf-8" />
@@ -20,9 +23,9 @@ const {
 
 <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64 128x128 256x256" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+<link rel="canonical" href={canonicalURL} />
 <meta property="og:title" content={title} />
-<meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:type" content="website" />
 <meta name="theme-color" content="#9CDBD9" />
 <link rel="stylesheet" href="/fonts/pretendard/v1.3.9/pretendardvariable-dynamic-subset.css" />
