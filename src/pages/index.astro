@@ -9,7 +9,7 @@ import HeroParticles from "../components/HeroParticles.jsx";
 import Icon from "../components/Icon.astro";
 import TextType from "../components/react-bits/TextType.jsx";
 import TechLogoLoop from "../components/TechLogoLoop.jsx";
-import Masonry from "../components/react-bits/Masonry";
+import WorkMasonry from "../components/WorkMasonry.jsx";
 import "../styles/work-masonry.css";
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -85,13 +85,14 @@ const projects = (await getCollection("work"))
 						{ "single-project": projects.length === 1 },
 					]}
 				>
-					<Masonry
+					<WorkMasonry
 						client:load
 						items={projects.map(({ id, data }) => ({
 							id,
 							title: data.title,
 							url: `/work/${id}`,
 							img: data.img ?? '',
+							img_dark: data.img_dark,
 							alt: data.img_alt,
 						}))}
 						columns={projects.length === 1 ? 1 : "auto"}
