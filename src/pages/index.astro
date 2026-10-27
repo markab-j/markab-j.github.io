@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 // Component Imports
 import CallToAction from "../components/CallToAction.astro";
 // Page section components
-import ContactCTA from "../components/ContactCTA.astro";
 import Hero from "../components/Hero.astro";
 import HeroParticles from "../components/HeroParticles.jsx";
 import Icon from "../components/Icon.astro";
@@ -112,8 +111,6 @@ const projects = (await getCollection("work"))
 				</div>
 			</section>
 		</main>
-
-		<ContactCTA />
 	</div>
 </BaseLayout>
 
