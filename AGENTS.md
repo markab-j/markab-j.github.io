@@ -143,7 +143,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 - 현재 Work 콘텐츠는 Idlerama입니다. `description`은 `Desktop Pet Application`만 사용합니다. Work 본문에는 영어 한 줄 소개와 홈페이지 링크(https://idlerama.markab-j.com), Steam 출시 예정 표시만 둡니다. Steam 스토어 주소는 아직 없으므로 링크를 만들지 않습니다. 실제 내용은 Markdown을 기준으로 확인합니다.
 - 홈 히어로는 원본 SVG 로고를 모바일 128px·데스크톱 160px로 중앙 정렬하고 아래에 TextType의 `I like developing / writing / planning`만 표시합니다. 로고와 문구는 순서대로 아래에서 올라오며, 모션 줄이기 설정에서는 진입 애니메이션을 생략합니다. 다른 페이지의 제목·소개에는 공용 `Hero.astro`를 사용합니다.
 - 공통 진입 효과는 `ScrollReveal.astro`의 GSAP ScrollTrigger와 타임라인을 사용합니다. `data-reveal` 요소를 화면의 위→아래, 같은 행은 왼쪽→오른쪽 순으로 배치하고 1.05초·220ms 간격으로 부드럽게 표시합니다. 내부 이동 전과 모션 줄이기·화면 크기 변경 시 GSAP matchMedia로 정리합니다. 홈 Masonry는 `animateFrom="none"`으로 중복 진입 효과를 끄고 갤러리를 공통 리빌로 표시하며, 원본 드래그·호버·링크 동작은 유지합니다.
-- 상단 브랜드 로고와 nav 우측 소셜·테마 버튼은 리빌 대상에서 제외해 처음부터 고정 표시합니다. 모바일 상단 로고와 메뉴 버튼도 리빌을 적용하지 않습니다.
+- nav 전체는 리빌 대상에서 제외해 처음부터 고정 표시합니다. 상단 브랜드 로고·중앙 메뉴·우측 소셜·테마 버튼과 모바일 상단 로고·메뉴 버튼 모두 진입 효과를 적용하지 않습니다.
 - Work 목록·상세와 About도 같은 리빌을 사용합니다. 제목·설명·카드·태그·커버·본문·연락처의 실제 요소에 `data-reveal`을 붙입니다. About의 데스크톱 섹션은 `display: contents`이므로 섹션 래퍼 대신 제목과 본문에 적용합니다.
 - 데스크톱 nav는 큰 크기의 GooeyNav와 캡슐 형태 StarBorder를 사용합니다. 별 효과 경로와 배경 모서리를 함께 유지합니다.
 - `BaseLayout.astro`의 ClientRouter와 persistent islands로 내부 이동 중 nav와 ClickSpark를 유지합니다. 페이지 이동과 테마 전환 후에도 효과·현재 메뉴 표시가 정상인지 확인합니다.

@@ -35,7 +35,7 @@ const isCurrentPage = (href: string) => {
 			markab-j
 		</a>
 	</div>
-	<div class="desktop-navigation" data-reveal>
+	<div class="desktop-navigation">
 		<SiteGooeyNav
 			items={textLinks}
 			initialActiveIndex={Math.max(0, textLinks.findIndex(({ href }) => isCurrentPage(href)))}
