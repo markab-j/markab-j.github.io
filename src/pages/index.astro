@@ -21,21 +21,20 @@ const cover = projects.length === 1 ? projects[0].data : undefined;
 ---
 
 <BaseLayout>
-	<div class="stack gap-20" data-home-page>
+	<div class="stack gap-20">
 		<header class="wrapper hero">
 			<div class="hero-particles" aria-hidden="true">
 				<HeroParticles client:load />
 			</div>
 			<img
 				class="hero-logo"
-				data-home-rise
-				data-rise-delay="80"
+				data-reveal
 				alt="markab-j logo"
 				width="512"
 				height="523"
 				src="/favicon.svg"
 			/>
-			<div class="interests" data-home-rise data-rise-delay="240">
+			<div class="interests" data-reveal>
 				<TextType
 					client:load
 					as="h1"
@@ -45,7 +44,7 @@ const cover = projects.length === 1 ? projects[0].data : undefined;
 					typingSpeed={90}
 					pauseDuration={1800}
 					deletingSpeed={40}
-					typeEffect="rise"
+					typeEffect="fade"
 					cursorStyle="bar"
 					cursorColor="var(--ink-coral)"
 					prefixColor="var(--gray-200)"
@@ -60,7 +59,7 @@ const cover = projects.length === 1 ? projects[0].data : undefined;
 
 		<main class="wrapper">
 			<section class="section" aria-labelledby="work-title">
-				<header class="section-header" data-home-rise data-rise-delay="320">
+				<header class="section-header" data-reveal>
 					<h2 id="work-title">Work</h2>
 				</header>
 
@@ -73,6 +72,7 @@ const cover = projects.length === 1 ? projects[0].data : undefined;
 					style={cover?.img_width && cover?.img_height
 						? { aspectRatio: `${cover.img_width} / ${cover.img_height}` }
 						: undefined}
+					data-reveal
 				>
 					<WorkMasonry
 						client:load
@@ -93,10 +93,11 @@ const cover = projects.length === 1 ? projects[0].data : undefined;
 						captions="hover"
 						hoverEffect="lift"
 						lightbox={false}
+						animateFrom="none"
 					/>
 				</div>
 
-				<div class="cta" data-home-rise data-rise-delay="400">
+				<div class="cta" data-reveal>
 					<a class="work-link" href="/work">
 						<span>View All</span>
 						<Icon icon="arrow-right" size="1em" />
@@ -106,50 +107,6 @@ const cover = projects.length === 1 ? projects[0].data : undefined;
 		</main>
 	</div>
 </BaseLayout>
-
-<script>
-	const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-	let observer: IntersectionObserver | undefined;
-	let animations: Animation[] = [];
-
-	const stopEntrance = () => {
-		observer?.disconnect();
-		animations.forEach((animation) => animation.cancel());
-		animations = [];
-	};
-
-	const revealHome = () => {
-		stopEntrance();
-		if (!document.querySelector('[data-home-page]') || motion.matches) return;
-
-		observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				if (!entry.isIntersecting) return;
-				const target = entry.target as HTMLElement;
-				animations.push(target.animate([
-					{ opacity: 0, transform: 'translateY(3rem)' },
-					{ opacity: 1, transform: 'translateY(-0.25rem)', offset: 0.75 },
-					{ opacity: 1, transform: 'none' },
-				], {
-					duration: 600,
-					delay: Number(target.dataset.riseDelay ?? 0),
-					easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-					fill: 'backwards',
-				}));
-				observer?.unobserve(target);
-			});
-		}, { threshold: 0.1 });
-
-		document.querySelectorAll(
-			'.site-nav .menu-header, .site-nav .desktop-navigation, .site-nav .menu-footer, ' +
-			'.mobile-navigation .staggered-menu-header, [data-home-rise], footer .group, footer .socials',
-		).forEach((target) => observer?.observe(target));
-	};
-
-	document.addEventListener('astro:page-load', revealHome);
-	document.addEventListener('astro:before-swap', stopEntrance);
-	motion.addEventListener('change', revealHome);
-</script>
 
 <style>
 	.hero {

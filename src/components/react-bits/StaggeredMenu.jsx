@@ -417,7 +417,7 @@ export const StaggeredMenu = ({
           return arr.map((c, i) => <div key={i} className="sm-prelayer" style={{ background: c }} />);
         })()}
       </div>
-      <header className="staggered-menu-header" aria-label="Main navigation header">
+      <header className="staggered-menu-header" aria-label="Main navigation header" data-reveal>
         <a className="sm-logo" href="/" aria-label={logoAlt}>
           <img
             src={logoUrl || '/favicon.svg'}

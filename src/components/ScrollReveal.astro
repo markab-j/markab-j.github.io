@@ -1,0 +1,64 @@
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+	let media: gsap.MatchMedia | undefined;
+
+	const revealPage = () => {
+		media?.revert();
+		media = gsap.matchMedia();
+		media.add({
+			motion: '(prefers-reduced-motion: no-preference)',
+			desktop: '(min-width: 50em)',
+			mobile: '(max-width: 49.999em)',
+		}, (context) => {
+			if (!context.conditions?.motion) return;
+			const targets = gsap.utils.toArray<HTMLElement>('[data-reveal]')
+				.filter((target) => target.getClientRects().length > 0);
+			const bounds = new Map(targets.map((target) => [target, target.getBoundingClientRect()]));
+			targets.sort((a, b) => {
+				const first = bounds.get(a)!;
+				const second = bounds.get(b)!;
+				return Math.abs(first.top - second.top) > 24
+					? first.top - second.top
+					: first.left - second.left;
+			});
+			const order = new Map(targets.map((target, index) => [target, index]));
+			gsap.set(targets, { autoAlpha: 0, y: 24 });
+
+			context.add('revealBatch', (batch: HTMLElement[]) => {
+				batch.sort((a, b) => order.get(a)! - order.get(b)!);
+				gsap.timeline().to(batch, {
+					autoAlpha: 1,
+					y: 0,
+					duration: 1.05,
+					stagger: 0.22,
+					ease: 'power2.out',
+					clearProps: 'transform',
+				});
+			});
+			ScrollTrigger.batch(targets, {
+				start: 'top bottom',
+				interval: 0.12,
+				once: true,
+				onEnter: (batch) => context.revealBatch(batch),
+			});
+		});
+	};
+
+	document.addEventListener('astro:page-load', revealPage);
+	document.addEventListener('astro:before-swap', () => media?.revert());
+</script>
+
+<style is:global>
+	@media (prefers-reduced-motion: no-preference) {
+		[data-reveal] {
+			opacity: 0;
+		}
+	}
+</style>
+
+<noscript>
+	<style is:inline>[data-reveal] { opacity: 1 !important; visibility: visible !important; }</style>
+</noscript>
