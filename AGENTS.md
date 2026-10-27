@@ -136,6 +136,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 
 - Work 스키마는 `src/content.config.ts`가 기준입니다. `img`, `img_dark`, `img_alt`는 선택 항목입니다. `img_dark`가 있는 로고는 라이트·다크 테마에 맞춰 전환하며, 원본 비율과 색상을 보존합니다.
 - Idlerama SVG는 라이트용에 `#FFFFFF`, 다크용에 `#242220` 배경을 포함합니다. 홈에서는 `WorkMasonry.jsx`가 현재 테마에 맞춰 이미지 경로를 원본 Masonry에 전달합니다.
+- `img_width`·`img_height`는 선택 이미지 치수입니다. Idlerama는 SVG viewBox의 `268 × 84.5`를 사용합니다. 단일 프로젝트 갤러리는 이 비율로 서버 렌더링부터 공간을 확보하고 Masonry에도 치수를 전달합니다. 페이지 배경의 `overflow: clip`은 등장 효과의 시각적 넘침이 문서 높이를 늘리지 않도록 하며, 실제 콘텐츠 높이와 페이지 스크롤은 유지합니다.
 - 홈은 최신 프로젝트 4개를 제공받은 TypeScript + CSS 버전의 React Bits `Masonry.tsx`로 표시합니다. 카드가 하나면 가운데 정렬합니다. 원본 디자인과 애니메이션을 유지하고, 카드별 제목·이미지·이동 주소는 `items` props로 전달합니다. `lightbox={false}`로 카드 전체를 클릭하면 해당 Work 상세 페이지로 같은 탭에서 이동합니다. 추가 이동 버튼, 커스텀 카드 렌더러와 Masonry 디자인 덮어쓰기를 넣지 않습니다. 원본은 클라이언트에서 카드를 생성하므로 홈에서 `client:load`로 실행합니다. 원본의 드래그 재정렬을 기본값으로 유지합니다. 드래그 직후에는 링크 이동을 억제하는 원본 동작을 유지합니다. Work 목록은 기존 `PortfolioPreview.astro`를 사용합니다.
 - Work 상세 본문은 확인된 사실 중심으로 간결하게 작성합니다. 한글 줄바꿈은 `word-break: keep-all`, `overflow-wrap: anywhere`, `line-break: strict`를 적용합니다.
 - 현재 Work 콘텐츠는 Idlerama입니다. `description`은 `Desktop Pet Application`만 사용합니다. Work 본문에는 영어 한 줄 소개와 홈페이지 링크(https://idlerama.markab-j.com), Steam 출시 예정 표시만 둡니다. Steam 스토어 주소는 아직 없으므로 링크를 만들지 않습니다. 실제 내용은 Markdown을 기준으로 확인합니다.

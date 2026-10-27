@@ -56,9 +56,13 @@ tags: [JavaScript, Tauri]
 ```yaml
 img: /images/my-project.webp
 img_alt: 프로젝트 화면 설명
+img_width: 1200
+img_height: 800
 ```
 
 `public` 아래 파일은 `/public` 없이 경로를 적습니다. 본문에도 `![화면 설명](/images/my-project.webp)`처럼 이미지를 넣을 수 있습니다.
+
+`img_width`와 `img_height`에는 이미지의 실제 가로·세로 크기를 적습니다. 홈에 프로젝트가 하나면 이 비율로 로딩 전부터 카드 공간을 확보합니다. SVG는 `viewBox`의 가로·세로 값을 사용합니다.
 
 홈의 **Work**에는 최신 프로젝트 4개가 표시되고, **Work** 페이지에는 전체 프로젝트가 표시됩니다. 프로젝트가 하나여도 사용할 수 있습니다. 삭제할 때는 해당 프로젝트의 Markdown 파일을 삭제하면 됩니다.
 

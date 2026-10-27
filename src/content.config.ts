@@ -14,6 +14,8 @@ export const collections = {
 			img: z.string().optional(),
 			img_dark: z.string().optional(),
 			img_alt: z.string().optional(),
+			img_width: z.number().positive().optional(),
+			img_height: z.number().positive().optional(),
 		}),
 	}),
 };
