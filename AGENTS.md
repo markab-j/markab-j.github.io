@@ -71,7 +71,7 @@ astro.config.mjs             대표 사이트 주소
 
 - 주요 버튼: 피치 → 코랄 그라데이션
 - 소개 문구: TextType으로 `I like developing / writing / planning`을 순환 표시
-- 홈 본문은 히어로와 Selected Work만 표시합니다. 별도 연락처 영역은 About 페이지에만 표시하며, Work 목록·상세 페이지에는 넣지 않습니다.
+- 홈 본문은 히어로와 Work만 표시합니다. Work 제목 아래 설명은 두지 않으며, 오른쪽 View All은 배경 없는 작은 텍스트 링크입니다. 밑줄은 호버·키보드 포커스 시 왼쪽에서 오른쪽으로 부드럽게 펼쳐집니다. 별도 연락처 영역은 About 페이지에만 표시하며, Work 목록·상세 페이지에는 넣지 않습니다.
 - GooeyNav: 민트 선택 표시와 연두·피치·코랄 물방울. 바깥쪽 StarBorder 배경과 글자는 테마별 회색 토큰을, 별빛은 `--link-color`, 잔상은 `--ink-coral`을 사용해 라이트·다크 모드에 맞춰 변경합니다 (6초 주기, sparkle, hover 없음).
 - StaggeredMenu: 피치·코랄 전환 레이어
 - 상단 Particles·ClickSpark: 네 가지 팔레트 색상
