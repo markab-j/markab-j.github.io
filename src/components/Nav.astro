@@ -29,7 +29,7 @@ const isCurrentPage = (href: string) => {
 ---
 
 <header class="site-nav">
-	<div class="menu-header" data-reveal>
+	<div class="menu-header">
 		<a href="/" class="site-title">
 			<img src="/favicon.svg" width="32" height="32" alt="" />
 			markab-j
@@ -44,7 +44,7 @@ const isCurrentPage = (href: string) => {
 			transition:persist-props
 		/>
 	</div>
-	<div class="menu-footer" data-reveal>
+	<div class="menu-footer">
 		<div class="socials">
 			{iconLinks.map(({ href, icon, label }) => (
 				<a href={href} class="social">

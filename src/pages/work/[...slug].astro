@@ -30,7 +30,7 @@ const { Content } = await render(entry);
 		<div class="stack gap-15">
 			<header>
 				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/work">
+					<a class="back-link" href="/work" data-reveal>
 						<Icon icon="arrow-left" /> Work
 					</a>
 					<Hero title={entry.data.title} align="start">
@@ -40,7 +40,7 @@ const { Content } = await render(entry);
 									<Pill>{t}</Pill>
 								))}
 							</div>
-							<p class="description">{entry.data.description}</p>
+							<p class="description" data-reveal>{entry.data.description}</p>
 						</div>
 					</Hero>
 				</div>
@@ -48,12 +48,12 @@ const { Content } = await render(entry);
 			<main class="wrapper" lang="ko">
 				<div class="stack gap-10 content">
 					{entry.data.img && (
-						<div class="project-cover">
+						<div class="project-cover" data-reveal>
 							<img src={entry.data.img} alt={entry.data.img_alt || ''} data-theme-image={entry.data.img_dark ? 'light' : undefined} />
 							{entry.data.img_dark && <img src={entry.data.img_dark} alt={entry.data.img_alt || ''} data-theme-image="dark" />}
 						</div>
 					)}
-					<div class="content">
+					<div class="content" data-reveal>
 						<Content />
 					</div>
 				</div>
