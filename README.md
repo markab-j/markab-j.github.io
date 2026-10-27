@@ -68,7 +68,7 @@ img_alt: 프로젝트 화면 설명
 
 | 바꿀 내용 | 파일 |
 | --- | --- |
-| 홈 제목·소개·`I like…` 문구 | `src/pages/index.astro` |
+| 홈 로고·`I like…` 문구 | `src/pages/index.astro` |
 | 소개 페이지 | `src/pages/about.astro` |
 | 메뉴·소셜 링크 | `src/components/Nav.astro` |
 | 푸터·소셜 링크 | `src/components/Footer.astro` |

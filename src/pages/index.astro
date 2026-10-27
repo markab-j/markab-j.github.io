@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 // Component Imports
 import CallToAction from "../components/CallToAction.astro";
 // Page section components
-import Hero from "../components/Hero.astro";
 import HeroParticles from "../components/HeroParticles.jsx";
 import Icon from "../components/Icon.astro";
 import TextType from "../components/react-bits/TextType.jsx";
@@ -22,54 +21,42 @@ const projects = (await getCollection("work"))
 ---
 
 <BaseLayout>
-	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
-				<div class="hero-particles" aria-hidden="true">
-					<HeroParticles client:load />
-				</div>
-				<Hero
-					title="Hello, my name is markab-j"
-					tagline="Welcome to my personal space on the web."
-					align="start"
-				>
-					<Fragment slot="title"
-						>Hello, my name is <span class="name-highlight"
-							>markab-j</span
-						></Fragment
-					>
-					<div class="interests">
-						<TextType
-							client:load
-							as="p"
-							prefix="I like "
-							text={["developing", "writing", "planning"]}
-							typingSpeed={90}
-							pauseDuration={1800}
-							deletingSpeed={40}
-							typeEffect="rise"
-							cursorStyle="bar"
-							cursorColor="var(--ink-coral)"
-							prefixColor="var(--gray-200)"
-							textColors={[
-								"var(--link-color)",
-								"var(--ink-coral)",
-								"var(--ink-peach)",
-							]}
-						/>
-					</div>
-				</Hero>
-
-				<img
-					alt="markab-j logo"
-					width="480"
-					height="490"
-					src="/favicon.svg"
+	<div class="stack gap-20">
+		<header class="wrapper hero">
+			<div class="hero-particles" aria-hidden="true">
+				<HeroParticles client:load />
+			</div>
+			<img
+				class="hero-logo"
+				alt="markab-j logo"
+				width="512"
+				height="523"
+				src="/favicon.svg"
+			/>
+			<div class="interests">
+				<TextType
+					client:load
+					as="h1"
+					prefix="I like "
+					text={["developing", "writing", "planning"]}
+					initialDelay={450}
+					typingSpeed={90}
+					pauseDuration={1800}
+					deletingSpeed={40}
+					typeEffect="rise"
+					cursorStyle="bar"
+					cursorColor="var(--ink-coral)"
+					prefixColor="var(--gray-200)"
+					textColors={[
+						"var(--link-color)",
+						"var(--ink-coral)",
+						"var(--ink-peach)",
+					]}
 				/>
-			</header>
-		</div>
+			</div>
+		</header>
 
-		<main class="wrapper stack gap-20 lg:gap-48">
+		<main class="wrapper">
 			<section class="section with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Selected Work</h3>
@@ -139,40 +126,23 @@ const projects = (await getCollection("work"))
 		);
 	}
 
-	.hero :global(.title) {
-		font-weight: 750;
-		line-height: 1.5em;
-	}
-
-	.hero :global(.tagline) {
-		font-weight: 500;
-	}
-
-	.name-highlight {
-		display: inline-block;
-		padding: 0.04em 0.18em;
-		border-radius: 0.2em;
-		background: var(--color-mint);
-		color: var(--text-on-pastel);
-		white-space: nowrap;
-	}
-
 	.interests {
 		font-family: var(--font-brand);
 		font-size: var(--text-lg);
 		font-weight: 600;
+		text-align: center;
 	}
 
 	.interests :global(.text-type) {
 		min-height: 1.5em;
 		min-width: 18ch;
+		font-size: inherit;
 		line-height: 1.5;
 	}
 
-	.hero img {
-		aspect-ratio: 5 / 4;
-		object-fit: contain;
-		object-position: top;
+	.hero-logo {
+		width: 8rem;
+		height: auto;
 		filter: drop-shadow(0.5px 0 0 var(--brand-500))
 			drop-shadow(-0.5px 0 0 var(--brand-500))
 			drop-shadow(0 0.5px 0 var(--brand-500))
@@ -181,25 +151,42 @@ const projects = (await getCollection("work"))
 	}
 
 	@media (min-width: 50em) {
-		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
-		}
-
 		.interests {
-			margin-top: 0.5rem;
 			font-size: var(--text-xl);
 		}
 
-		.hero img {
-			aspect-ratio: 3 / 4;
-			object-fit: contain;
+		.hero-logo {
+			width: 10rem;
 		}
 	}
 
-	/* ====================================================== */
+	@media (prefers-reduced-motion: no-preference) {
+		.hero-logo,
+		.interests {
+			animation: hero-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+		}
+
+		.interests {
+			animation-delay: 160ms;
+		}
+	}
+
+	@keyframes hero-rise {
+		from {
+			opacity: 0;
+			transform: translateY(3rem);
+		}
+
+		75% {
+			opacity: 1;
+			transform: translateY(-0.25rem);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 
 	.section {
 		display: grid;
