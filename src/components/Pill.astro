@@ -5,21 +5,23 @@ interface Props {
 const { tone = 'mint' } = Astro.props;
 ---
 
-<div class="pill" style={{ '--pill-color': `var(--color-${tone})` }}>
+<div class="pill" style={{ '--pill-color': `var(--color-${tone})` }} data-reveal>
 	<slot />
 </div>
 
 <style>
 	.pill {
-		display: flex;
-		padding: 0.5rem 1rem;
-		gap: 0.5rem;
-		color: var(--accent-text-over);
-		border: 1px solid var(--pill-color);
-		background-color: var(--pill-color);
+		display: inline-flex;
+		align-items: center;
+		max-width: 100%;
+		padding: 0.35rem 0.75rem;
+		color: var(--gray-200);
+		border: 1px solid color-mix(in srgb, var(--pill-color) 25%, var(--gray-800));
+		background-color: color-mix(in srgb, var(--pill-color) 10%, var(--gray-999));
 		border-radius: 999rem;
-		font-size: var(--text-md);
-		line-height: 1.35;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		line-height: 1.4;
 		white-space: nowrap;
 	}
 </style>

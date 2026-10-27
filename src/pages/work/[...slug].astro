@@ -83,6 +83,8 @@ const { Content } = await render(entry);
 
 	.tags {
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 0.5rem;
 	}
 
@@ -153,6 +155,10 @@ const { Content } = await render(entry);
 		.details {
 			flex-direction: row;
 			gap: 2.5rem;
+		}
+
+		.tags {
+			justify-content: flex-start;
 		}
 
 		.content :global(blockquote) {
