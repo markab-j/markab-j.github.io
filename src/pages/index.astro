@@ -21,19 +21,21 @@ const projects = (await getCollection("work"))
 ---
 
 <BaseLayout>
-	<div class="stack gap-20">
+	<div class="stack gap-20" data-home-page>
 		<header class="wrapper hero">
 			<div class="hero-particles" aria-hidden="true">
 				<HeroParticles client:load />
 			</div>
 			<img
 				class="hero-logo"
+				data-home-rise
+				data-rise-delay="80"
 				alt="markab-j logo"
 				width="512"
 				height="523"
 				src="/favicon.svg"
 			/>
-			<div class="interests">
+			<div class="interests" data-home-rise data-rise-delay="240">
 				<TextType
 					client:load
 					as="h1"
@@ -58,7 +60,7 @@ const projects = (await getCollection("work"))
 
 		<main class="wrapper">
 			<section class="section with-cta">
-				<header class="section-header stack gap-2 lg:gap-4">
+				<header class="section-header stack gap-2 lg:gap-4" data-home-rise data-rise-delay="320">
 					<h3>Selected Work</h3>
 					<p>A selection of my projects.</p>
 				</header>
@@ -90,7 +92,7 @@ const projects = (await getCollection("work"))
 					/>
 				</div>
 
-				<div class="cta">
+				<div class="cta" data-home-rise data-rise-delay="400">
 					<CallToAction href="/work">
 						View All
 						<Icon icon="arrow-right" size="1.2em" />
@@ -100,6 +102,50 @@ const projects = (await getCollection("work"))
 		</main>
 	</div>
 </BaseLayout>
+
+<script>
+	const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+	let observer: IntersectionObserver | undefined;
+	let animations: Animation[] = [];
+
+	const stopEntrance = () => {
+		observer?.disconnect();
+		animations.forEach((animation) => animation.cancel());
+		animations = [];
+	};
+
+	const revealHome = () => {
+		stopEntrance();
+		if (!document.querySelector('[data-home-page]') || motion.matches) return;
+
+		observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				const target = entry.target as HTMLElement;
+				animations.push(target.animate([
+					{ opacity: 0, transform: 'translateY(3rem)' },
+					{ opacity: 1, transform: 'translateY(-0.25rem)', offset: 0.75 },
+					{ opacity: 1, transform: 'none' },
+				], {
+					duration: 600,
+					delay: Number(target.dataset.riseDelay ?? 0),
+					easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+					fill: 'backwards',
+				}));
+				observer?.unobserve(target);
+			});
+		}, { threshold: 0.1 });
+
+		document.querySelectorAll(
+			'.site-nav .menu-header, .site-nav .desktop-navigation, .site-nav .menu-footer, ' +
+			'.mobile-navigation .staggered-menu-header, [data-home-rise], footer .group, footer .socials',
+		).forEach((target) => observer?.observe(target));
+	};
+
+	document.addEventListener('astro:page-load', revealHome);
+	document.addEventListener('astro:before-swap', stopEntrance);
+	motion.addEventListener('change', revealHome);
+</script>
 
 <style>
 	.hero {
@@ -157,34 +203,6 @@ const projects = (await getCollection("work"))
 
 		.hero-logo {
 			width: 10rem;
-		}
-	}
-
-	@media (prefers-reduced-motion: no-preference) {
-		.hero-logo,
-		.interests {
-			animation: hero-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
-		}
-
-		.interests {
-			animation-delay: 160ms;
-		}
-	}
-
-	@keyframes hero-rise {
-		from {
-			opacity: 0;
-			transform: translateY(3rem);
-		}
-
-		75% {
-			opacity: 1;
-			transform: translateY(-0.25rem);
-		}
-
-		to {
-			opacity: 1;
-			transform: translateY(0);
 		}
 	}
 

@@ -138,6 +138,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 - Work 상세 본문은 확인된 사실 중심으로 간결하게 작성합니다. 한글 줄바꿈은 `word-break: keep-all`, `overflow-wrap: anywhere`, `line-break: strict`를 적용합니다.
 - 현재 Work 콘텐츠는 Idlerama입니다. `description`은 `Desktop Pet Application`만 사용합니다. Work 본문에는 영어 한 줄 소개와 홈페이지 링크(https://idlerama.markab-j.com), Steam 출시 예정 표시만 둡니다. Steam 스토어 주소는 아직 없으므로 링크를 만들지 않습니다. 실제 내용은 Markdown을 기준으로 확인합니다.
 - 홈 히어로는 원본 SVG 로고를 모바일 128px·데스크톱 160px로 중앙 정렬하고 아래에 TextType의 `I like developing / writing / planning`만 표시합니다. 로고와 문구는 순서대로 아래에서 올라오며, 모션 줄이기 설정에서는 진입 애니메이션을 생략합니다. 다른 페이지의 제목·소개에는 공용 `Hero.astro`를 사용합니다.
+- 홈 메뉴·로고·문구·Work 제목·링크·푸터는 화면에 들어올 때 한 번씩 아래에서 올라옵니다. `index.astro`의 IntersectionObserver와 Web Animations로 실행하며, 내부 이동 전과 모션 줄이기 설정 변경 시 정리합니다. Masonry 카드는 원본의 스크롤 진입 애니메이션을 사용합니다.
 - 데스크톱 nav는 큰 크기의 GooeyNav와 캡슐 형태 StarBorder를 사용합니다. 별 효과 경로와 배경 모서리를 함께 유지합니다.
 - `BaseLayout.astro`의 ClientRouter와 persistent islands로 내부 이동 중 nav와 ClickSpark를 유지합니다. 페이지 이동과 테마 전환 후에도 효과·현재 메뉴 표시가 정상인지 확인합니다.
 - 글자 선택과 이미지·링크 드래그, 컨텍스트 메뉴 방지를 유지합니다. 입력 가능한 요소는 예외로 처리합니다.
