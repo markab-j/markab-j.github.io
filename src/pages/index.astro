@@ -8,7 +8,6 @@ import Hero from "../components/Hero.astro";
 import HeroParticles from "../components/HeroParticles.jsx";
 import Icon from "../components/Icon.astro";
 import TextType from "../components/react-bits/TextType.jsx";
-import TechLogoLoop from "../components/TechLogoLoop.jsx";
 import WorkMasonry from "../components/WorkMasonry.jsx";
 import "../styles/work-masonry.css";
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
@@ -112,17 +111,6 @@ const projects = (await getCollection("work"))
 					</CallToAction>
 				</div>
 			</section>
-
-			<section class="section" aria-labelledby="built-with-title">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3 id="built-with-title">Technologies</h3>
-					<p>Languages, frameworks, and tools.</p>
-				</header>
-
-				<div class="gallery logo-gallery">
-					<TechLogoLoop client:visible />
-				</div>
-			</section>
 		</main>
 
 		<ContactCTA />
@@ -219,10 +207,6 @@ const projects = (await getCollection("work"))
 	.section {
 		display: grid;
 		gap: 2rem;
-	}
-
-	.logo-gallery {
-		min-width: 0;
 	}
 
 	.section-header {

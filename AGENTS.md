@@ -71,7 +71,6 @@ astro.config.mjs             대표 사이트 주소
 
 - 주요 버튼: 피치 → 코랄 그라데이션
 - 소개 문구: TextType으로 `I like developing / writing / planning`을 순환 표시
-- 기술 로고 영역: 중립 배경·테두리와 기본 본문색
 - 연락처 영역: 페이지와 이어지는 배경, 피치·코랄 버튼
 - GooeyNav: 민트 선택 표시와 연두·피치·코랄 물방울. 바깥쪽 StarBorder 배경과 글자는 테마별 회색 토큰을, 별빛은 `--link-color`, 잔상은 `--ink-coral`을 사용해 라이트·다크 모드에 맞춰 변경합니다 (6초 주기, sparkle, hover 없음).
 - StaggeredMenu: 피치·코랄 전환 레이어
@@ -110,7 +109,7 @@ import StarBorder from '../components/react-bits/StarBorder';
 
 지시어가 없으면 정적 HTML만 렌더링되므로 상호작용과 애니메이션이 실행되지 않습니다. 함수 형태의 이벤트 핸들러가 필요하면 `.tsx` 래퍼 안에서 정의하세요. Astro에서 전달하는 props는 직렬화 가능한 값으로 유지합니다.
 
-컴포넌트 CSS에서는 `var(--brand-200)` 등 기존 디자인 토큰을 사용할 수 있습니다. JavaScript에서 계산하는 색상이나 WebGL 색상에는 컴포넌트가 지원하는 실제 색상값을 전달하세요. 홈의 **Technologies** 섹션에는 첨부된 JavaScript + CSS 버전의 LogoLoop를 적용했습니다. 원본 소스는 `src/components/react-bits/LogoLoop.jsx`와 `LogoLoop.css`에 있으며, 표시할 기술 로고와 속도는 `src/components/TechLogoLoop.jsx`에서 수정합니다. 아이콘은 `react-icons`를 사용합니다. 화면에 보이면 실행되며, 마우스 호버·키보드 포커스 시 일시정지하고 시스템의 모션 줄이기 설정을 따릅니다.
+컴포넌트 CSS에서는 `var(--brand-200)` 등 기존 디자인 토큰을 사용할 수 있습니다. JavaScript에서 계산하는 색상이나 WebGL 색상에는 컴포넌트가 지원하는 실제 색상값을 전달하세요.
 
 데스크톱 메뉴에는 React Bits의 GooeyNav를, `50em` 미만의 모바일 화면에서는 GSAP 기반 StaggeredMenu를 사용합니다. 모바일 메뉴의 링크·소셜·테마 버튼과 민트 색상은 `src/components/Nav.astro`에서 연결하고, 사이트용 스타일은 `src/components/MobileMenu.css`에서 조정합니다. `src/components/SiteGooeyNav.jsx`에서 현재 경로·테마·디자인 토큰을 연결하며, 메뉴 링크는 `src/components/Nav.astro`에서 수정합니다. 메뉴와 클릭 효과는 내부 페이지 이동 중에도 유지됩니다.
 
