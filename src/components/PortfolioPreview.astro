@@ -41,6 +41,15 @@ const { data, id } = Astro.props.project;
 		box-shadow: var(--shadow-md);
 	}
 
+	:global(html:not(.theme-dark)) .card {
+		background: var(--gray-999);
+		box-shadow: none;
+	}
+
+	:global(html:not(.theme-dark)) .card:hover {
+		box-shadow: var(--shadow-sm);
+	}
+
 	.title {
 		grid-area: 1 / 1 / 2 / 2;
 		z-index: 1;

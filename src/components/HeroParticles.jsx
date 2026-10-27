@@ -44,12 +44,12 @@ export default function HeroParticles() {
 			particleSpread={12}
 			speed={0.1}
 			particleBaseSize={100}
-			glow={0.4}
+			glow={appearance.lightMode ? 0.1 : 0.4}
 			twinkle={0.2}
 			moveParticlesOnHover
 			hoverEffect="repel"
 			connections
-			opacity={0.55}
+			opacity={appearance.lightMode ? 0.4 : 0.55}
 		/>
 	);
 }

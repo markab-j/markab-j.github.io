@@ -59,7 +59,7 @@ export default function SiteGooeyNav({ items, initialActiveIndex }) {
 			trailLength={0.3}
 			thickness={1}
 			radius={999}
-			glow={0.7}
+			glow={appearance.theme === 'light' ? 0.2 : 0.7}
 			hover="none"
 			sparkle
 			clickPulse

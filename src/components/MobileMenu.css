@@ -32,6 +32,10 @@
 	padding: 6rem 1.5rem 2rem;
 }
 
+html:not(.theme-dark) .mobile-navigation .staggered-menu-panel {
+	background: var(--gray-999);
+}
+
 .mobile-navigation .sm-panel-item,
 .mobile-navigation .sm-socials-link {
 	color: var(--gray-100);
