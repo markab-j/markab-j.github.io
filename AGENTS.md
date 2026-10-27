@@ -75,6 +75,7 @@ astro.config.mjs             대표 사이트 주소
 - GooeyNav: 민트 선택 표시와 연두·피치·코랄 물방울. 바깥쪽 StarBorder 배경과 글자는 테마별 회색 토큰을, 별빛은 `--link-color`, 잔상은 `--ink-coral`을 사용해 라이트·다크 모드에 맞춰 변경합니다 (6초 주기, sparkle, hover 없음).
 - StaggeredMenu: 피치·코랄 전환 레이어
 - 상단 Particles·ClickSpark: 네 가지 팔레트 색상
+- 히어로 파티클은 컨테이너 가로 비율에 맞춰 분포를 확대합니다. 점의 WebGL 투영과 연결선의 CPU 투영에 같은 가로 보정을 적용해 위치를 일치시킵니다.
 
 Canvas·WebGL 효과에는 계산된 CSS 토큰 값을 전달합니다. ClickSpark의 색상 배열에 `--color-mint`처럼 토큰 이름을 전달하면 클릭 시점에 실제 색상으로 변환합니다. 새로운 효과 색상은 원본 컴포넌트에 직접 하드코딩하지 않습니다.
 

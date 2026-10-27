@@ -69,6 +69,8 @@ void main() {
   pos.z *= ${DEPTH.toFixed(1)};
   vec3 wobble = bob(aRandom, uTime);
   vec3 world = uRotation * pos + uOffset + wobble;
+  // Fill the container width, including wide hero sections.
+  world.x *= uAspect;
   float edge = 1.0;
   if (uDrift == 1 || uDrift == 2) {
     float span = uSpread * 2.0 + 3.0;
@@ -540,7 +542,7 @@ const Particles = ({
         const bobX = Math.sin(time * r2 + 6.28 * r3) * (0.1 + 1.4 * r0);
         const bobY = Math.sin(time * r1 + 6.28 * r0) * (0.1 + 1.4 * r3);
         const bobZ = Math.sin(time * r3 + 6.28 * r1) * (0.1 + 1.4 * r2);
-        const wx = matrix[0] * px + matrix[3] * py + matrix[6] * pz + ox + bobX;
+        const wx = (matrix[0] * px + matrix[3] * py + matrix[6] * pz + ox + bobX) * aspect;
         let wy = matrix[1] * px + matrix[4] * py + matrix[7] * pz + oy + bobY;
         let wz = matrix[2] * px + matrix[5] * py + matrix[8] * pz + oz + bobZ;
         let edge = 1;

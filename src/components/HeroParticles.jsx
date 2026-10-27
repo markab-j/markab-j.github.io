@@ -6,11 +6,14 @@ export default function HeroParticles() {
 		particleColors: ['#9CDBD9', '#DCEDC1', '#FFD3B6', '#FFAAA5'],
 		lightMode: true,
 		paused: false,
+		particleCount: 320,
+		connectionDistance: 140,
 	});
 
 	useEffect(() => {
 		const root = document.documentElement;
 		const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const mobile = window.matchMedia('(max-width: 49.999em)');
 		const updateAppearance = () => {
 			const tokens = getComputedStyle(root);
 			setAppearance({
@@ -19,22 +22,25 @@ export default function HeroParticles() {
 				),
 				lightMode: !root.classList.contains('theme-dark'),
 				paused: motion.matches,
+				particleCount: mobile.matches ? 180 : 320,
+				connectionDistance: mobile.matches ? 90 : 140,
 			});
 		};
 		updateAppearance();
 		const observer = new MutationObserver(updateAppearance);
 		observer.observe(root, { attributes: true, attributeFilter: ['class'] });
 		motion.addEventListener('change', updateAppearance);
+		mobile.addEventListener('change', updateAppearance);
 		return () => {
 			observer.disconnect();
 			motion.removeEventListener('change', updateAppearance);
+			mobile.removeEventListener('change', updateAppearance);
 		};
 	}, []);
 
 	return (
 		<Particles
 			{...appearance}
-			particleCount={220}
 			particleSpread={12}
 			speed={0.1}
 			particleBaseSize={100}
